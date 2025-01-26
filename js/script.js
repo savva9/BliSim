@@ -180,7 +180,7 @@ settingsIcon.addEventListener("click", () => {
         settingsMenu.style.display = "none"; // Скрываем меню
     }
 });
-
+settingsIcon.click()
 
 document.querySelector(".settings-menu").addEventListener("change", () => {
     settings_data[0].checked ? stripeContainer.classList.remove("hidden") : stripeContainer.classList.add("hidden");
