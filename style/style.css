@@ -146,22 +146,26 @@ input:hover {
 
 .settings {
     position: fixed;
-    bottom: 10px; /* Отступ от нижнего края */
-    right: 10px;  /* Отступ от правого края */
+    bottom: 25px; /* Отступ от нижнего края */
+    right: 25px;  /* Отступ от правого края */
     width: 40px;  /* Ширина иконки */
     height: 40px; /* Высота иконки */
-    opacity: 0.7; /* Уменьшаем непрозрачность */
+    opacity: 0.9; /* Уменьшаем непрозрачность */
     transition: opacity 0.3s, background-color 0.3s; /* Плавный переход для изменения */
+    scale: 200%;
+    border-radius: 3px;
+    background-color: #414347;
 }
 
 .settings:hover {
-    opacity: 1; /* Делает иконку полностью непрозрачной */
+    cursor: pointer;
+    opacity: 1;
 }
 
 .settings-menu {
     position: fixed;
-    bottom: 60px; /* Немного выше иконки */
-    right: 10px;
+    bottom: 140px; /* Немного выше иконки */
+    right: 50px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 15px;
@@ -169,6 +173,7 @@ input:hover {
     display: none; /* Изначально скрыто */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 100;
+    scale: 125%;
 }
 
 .setting-item {
