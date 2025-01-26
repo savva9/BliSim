@@ -131,13 +131,15 @@ startButton.addEventListener("click", () => {
         isPaused = false;
         startButton.value = "Рестарт"
         canClick = true
+        photos = -1;
     } else {
         arrow.style.animation = 'none'; // Останавливаем анимацию
         arrow.offsetHeight; // Принудительное пересчитывание для сброса стилей
         arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
         arrow.style.animationPlayState = 'running'; // Перезапускаем анимацию
+        photos = 0;
     }
-    photos = -1;
+    photosText.textContent = `Фото: 0`;
 });
 
 
