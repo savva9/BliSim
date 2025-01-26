@@ -1,0 +1,325 @@
+body {
+    font-family: "Shantell Sans", serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #4f5258;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+#stripe {
+    display: flex;
+    height: 50px;
+    width: calc(100% - 40px); /* Отступы по бокам */
+    position: relative;
+    top: 0;
+    margin: 20px; /* Отступы от краев страницы */
+    box-shadow: 0 0 0 6px #1e1f22; /* Обводка с помощью box-shadow */
+    border-radius: 2px;
+    position: relative;
+}
+
+.segment {
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px; /* Увеличен отступ */
+    border-radius: 5px;
+    display: none;
+    font-size: 18px;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+/* Стиль для стрелочки */
+.arrow {
+    position: absolute;
+    top: 98%; /* Стрелка будет по центру по вертикали */
+    left: -5px; /* Стрелка будет немного левее */
+    width: 10px;
+    height: 10px;
+    scale: 200%;
+    background-color: #5865f2;
+    border-radius: 1px;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    transform: translateY(-50%); /* Выравниваем по центру */
+    z-index: 10;
+}
+
+
+/* Анимация для стрелочки */
+@keyframes moveArrow {
+    0% {
+        left: -5px;
+    }
+    100% {
+        left: calc(100% - 0px); /* Стрелка двигается до конца полоски, вычитаем её ширину */
+    }
+}
+
+.made-by {
+    position: fixed;
+    bottom: 0px; /* Отступ от нижнего края */
+    left: 10px; /* Отступ от левого края */
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для читаемости */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.square {
+    width: 150px;
+    height: 150px;
+    background-color: none;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center;
+    scale: 300%;
+}
+
+
+.ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+input {
+    font-family: "Shantell Sans", serif;
+    padding: 6px 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #323235;
+    color: white;
+    margin: 5px;
+    scale: 150%;
+    transition: opacity 0.3s, background-color 0.3s; /* Плавный переход для изменения */
+}
+
+input:hover {
+    background-color: #28282b;
+}
+
+.buttons {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.photo {
+    text-align: center;
+    color: white;
+    background-color: #43464b;
+    border-radius: 3px;
+    padding: 5px 15px; /* Добавляем отступы вокруг текста */
+    display: inline-block; /* Чтобы фон был только вокруг текста */
+    position: fixed ;
+    bottom: 40px; /* Отступ от нижнего края */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%) scale(2.5); /* Сдвигаем и увеличиваем размер на 250% */
+}
+
+.text-in-photo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.settings {
+    position: fixed;
+    bottom: 10px; /* Отступ от нижнего края */
+    right: 10px;  /* Отступ от правого края */
+    width: 40px;  /* Ширина иконки */
+    height: 40px; /* Высота иконки */
+    opacity: 0.7; /* Уменьшаем непрозрачность */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавный переход для изменения */
+}
+
+.settings:hover {
+    opacity: 1; /* Делает иконку полностью непрозрачной */
+}
+
+.settings-menu {
+    position: fixed;
+    bottom: 60px; /* Немного выше иконки */
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: none; /* Изначально скрыто */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.setting-item {
+    margin-bottom: 10px;
+}
+
+.setting-item label {
+    margin-right: 10px;
+}
+
+.setting-item input {
+    cursor: pointer;
+}
+
+.start-button {
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 15px; /* Добавляем отступы вокруг текста */
+    display: inline-block; /* Чтобы фон был только вокруг текста */
+    position: fixed;
+    bottom: 130px; /* Отступ от нижнего края */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-37%) scale(1); /* Сдвигаем и увеличиваем размер на 250% */
+}
+
+
+.setting-choose-ghost {
+    display: none; /* Меняем display с 'none' на 'block' или 'flex' для отображения */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 101;
+    animation: fadeIn 0.5s ease-out;
+    width: 80%;
+    height: 45%;
+    overflow: auto;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%); /* Начальная позиция немного выше */
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%); /* Окончательная позиция по центру */
+    }
+}
+
+.setting-ghost {
+    max-width: 150%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
+
+.ghost-row {
+    display: flex;
+    justify-content: space-between; /* Размещаем изображения в одну строку */
+    margin-bottom: 10px; /* Отступ между рядами */
+}
+
+.overlay {
+    display: none; /* Оставляем скрытым */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000080; /* Полупрозрачный фон */
+    z-index: 100;
+}
+
+.selected {
+    box-shadow: 0 0 30px #b9b9b980;
+    background-color: #b9b9b980;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+}
+
+/* Плавное исчезновение обводки */
+.setting-ghost {
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+    border-radius: 10px;
+}
+
+.setting-choose-ghost input[type="button"] {
+    width: 50%; /* Растягиваем кнопку на 50% ширины */
+    padding: 12px 20px; /* Добавляем отступы внутри кнопки */
+    background-color: #5865f2; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    font-size: 18px; /* Размер текста */
+    border: none; /* Убираем стандартные рамки */
+    border-radius: 15px; /* Скругляем углы */
+    cursor: pointer; /* Курсор на кнопку */
+    transition: background-color 0.3s; /* Плавный переход для цвета */
+    margin-top: 15px; /* Отступ сверху */
+    display: block; /* Делаем кнопку блочным элементом */
+    margin-left: auto; /* Отступ слева для центрирования */
+    margin-right: auto; /* Отступ справа для центрирования */
+    margin-top: 35px;
+}
+
+.setting-choose-ghost input[type="button"]:disabled {
+    background-color: #d3d3d3; /* Цвет кнопки, когда она заблокирована */
+    cursor: not-allowed; /* Курсор, когда кнопка заблокирована */
+}
+
+.setting-choose-ghost input[type="button"]:hover {
+    background-color: #4f56c3; /* Цвет кнопки при наведении */
+}
+
+.setting-item {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between; /* Для выравнивания элементов по бокам */
+    align-items: center; /* Для выравнивания элементов по вертикали */
+}
+
+.setting-item input[type="button"].choose-ghost {
+    width: 100%; /* Устанавливаем ширину кнопки на 100% */
+    padding: 12px 20px; /* Добавляем отступы внутри кнопки */
+    background-color: #5865f2; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    font-size: 18px; /* Размер текста */
+    border: none; /* Убираем стандартные рамки */
+    border-radius: 15px; /* Скругляем углы */
+    cursor: pointer; /* Курсор на кнопку */
+    transition: background-color 0.3s; /* Плавный переход для цвета */
+    margin-top: 5px; /* Отступ сверху */
+    scale: 105%;
+}
+
+.ghost-conteiner {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение */
+    align-items: center; /* Центрируем элементы по горизонтали */
+    justify-content: center; /* Центрируем элементы по вертикали */
+    margin-bottom: 10px;
+}
+
+.selected-ghost {
+    width: 250px; /* Задаем фиксированную ширину картинки */
+    height: auto; /* Автоматически рассчитываем высоту для сохранения пропорций */
+}

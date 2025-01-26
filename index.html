@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Generated Stripe</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neucha&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div id="stripe">
+        <div class="arrow"></div>
+    </div>
     
+    <div class="ghost">
+        <div class="square" id="square"></div>
+    </div>
+    <div class="text-in-photo">
+        <input class="start-button" type="button" value="Старт">
+        <p class="photo">Фото: 0</p>
+    </div>    
+    
+    <img class="settings" src="img/settings_icon.svg" alt="Settings">
+    <div class="settings-menu">
+        <div class="setting-item">
+            <label for="setting1">Показывать таймлайн:</label>
+            <input type="checkbox" id="setting">
+        </div>
+        <div class="setting-item">
+            <label for="setting2">Показывать стрелочку:</label>
+            <input type="checkbox" id="setting">
+        </div>
+        <div class="setting-item ghost-conteiner">
+            <input class="choose-ghost" type="button" value="Выбрать призрака">
+            <img src="img/Ghosts/None.png" alt="None" class="selected-ghost">
+        </div>
+    </div>
+    
+    <div class="setting-choose-ghost">
+        <div class="ghost-row">
+            <img src="img/Ghosts/Male/Butcher.png" alt="Butcher" class="setting-ghost">
+            <img src="img/Ghosts/Male/Fisherman.png" alt="Fisherman" class="setting-ghost">
+            <img src="img/Ghosts/Male/Greybeard.png" alt="Greybeard" class="setting-ghost">
+            <img src="img/Ghosts/Male/Sofia.png" alt="Sofia" class="setting-ghost">
+            <img src="img/Ghosts/Male/Nerd.png" alt="Nerd" class="setting-ghost">
+            <img src="img/Ghosts/Male/Skeleton.png" alt="Skeleton" class="setting-ghost">
+            <img src="img/Ghosts/Male/Brute.png" alt="Brute" class="setting-ghost">
+        </div>
+        <div class="ghost-row">
+            <img src="img/Ghosts/Female/CreepyGirl.png" alt="Creepy Girl" class="setting-ghost">
+            <img src="img/Ghosts/Female/OldCrone.png" alt="Old Crone" class="setting-ghost">
+            <img src="img/Ghosts/Female/Patient07.png" alt="Patient 07" class="setting-ghost">
+            <img src="img/Ghosts/Female/Argyro.png" alt="Argyro" class="setting-ghost">
+            <img src="img/Ghosts/None.png" alt="None" class="setting-ghost">
+        </div>
+        <input type="button" value="Применить" id="applyButton" disabled>
+    </div>
+    
+    <p class="made-by">Сделано </p>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
