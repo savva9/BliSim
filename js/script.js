@@ -90,7 +90,7 @@ function updateArrowPosition() {
     let accumulatedWidth = 0;
 
     document.querySelectorAll(".segment").forEach(segment => {
-        const segmentWidth = segment.offsetWidth;
+        const segmentWidth = segment.offsetWidth + 5;
 
         // Проверим, находится ли стрелка в пределах текущего сегмента
         if (arrowPosition >= accumulatedWidth && arrowPosition <= accumulatedWidth + segmentWidth) {
