@@ -180,7 +180,7 @@ settingsIcon.click();
 settingsMenu.addEventListener("change", () => {
     settings_data[0].checked ? stripeContainer.classList.remove("hidden") : stripeContainer.classList.add("hidden");
     settings_data[1].checked ? arrow.classList.remove("hidden") : arrow.classList.add("hidden");
-    showGhost = settings_data[2].checked;
+    showGhost = settings_data[1].checked;
 });
 
 // Функции для отображения и скрытия настроек выбора призраков
