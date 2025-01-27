@@ -150,7 +150,6 @@ startButton.addEventListener("click", () => {
 
 // Обработчик клика по телу страницы
 document.querySelector("body").addEventListener("mousedown", () => {
-    console.log(square.style.backgroundColor, !isPaused, canClick)
     if (square.style.backgroundColor === "black" && !isPaused && canClick) {
         photos++;
         photosText.textContent = `Фото: ${photos}`;
