@@ -23,8 +23,9 @@ const blinkinsData = [
 ];
 
 // Получение элементов интерфейса
+const timeDisplay = document.querySelector(".timer");
 const stripeContainer = document.getElementById("stripe");
-const square = document.getElementById('square');
+const square = document.getElementById("square");
 const arrow = document.querySelector(".arrow");
 const startButton = document.querySelector(".start-button");
 const restartButton = document.querySelector(".restart-button")
@@ -34,7 +35,7 @@ const madeBy = document.querySelector(".made-by");
 const settingsIcon = document.querySelector(".settings");
 const settingsMenu = document.querySelector(".settings-menu");
 const ghostSettings = document.querySelector(".setting-choose-ghost");
-const overlay = document.createElement('div');
+const overlay = document.createElement("div");
 const applyButton = document.getElementById('applyButton');
 const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
@@ -48,6 +49,9 @@ let photos = 0;
 let combo = 0;
 let isPaused = true;
 let selectedGhost = null;
+let intervalTimer;
+let elapsedTimer = 0;
+let isRunningTimer = false;
 overlay.classList.add('overlay');
 document.body.appendChild(overlay);
 
@@ -59,6 +63,10 @@ arrow.style.animationPlayState = "paused";
 // Инициализация настроек
 settings_data[0].checked = true;
 settings_data[1].checked = true;
+settings_data[2].checked = false;
+
+// Функция sleep
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // Добавление сегментов на полосу
 blinkinsData.forEach(([lengthRatio, colorFlag, description]) => {
@@ -134,27 +142,77 @@ function trackArrowPosition() {
     requestAnimationFrame(trackArrowPosition);
 }
 
+// Таймер
+function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = String(Math.floor(totalSeconds / 60)).padStart(1, '0');
+    const seconds = String(totalSeconds % 60).padStart(2, '0');
+    const milliseconds = String(Math.floor((ms % 1000) / 100)).padStart(1, '0');
+    return `${minutes}:${seconds}.${milliseconds}`;
+}
+
+// Обновление дисплея
+function updateTimerDisplay() {
+    timeDisplay.textContent = formatTime(elapsedTimer);
+}
+
+// Старт таймера
+function startTimer() {
+    if (isRunningTimer) return;
+    isRunningTimer = true;
+    const startTime = Date.now() - elapsedTimer;
+    intervalTimer = setInterval(() => {
+        elapsedTimer = Date.now() - startTime;
+        updateTimerDisplay();
+    }, 10);
+}
+
+// Ресет таймера
+function resetTimer() {
+    clearInterval(intervalTimer);
+    isRunningTimer = false;
+    elapsedTimer = 0;
+    updateTimerDisplay();
+}
+
 // Обработчик кнопки старта
-startButton.addEventListener("click", () => {
-    arrow.style.animationPlayState = "running";
+startButton.addEventListener("click", async () => {
+    startTimer();
     trackArrowPosition();
+    
     isPaused = false;
     canClick = true;
-    startButton.classList.add("fullHidden")
-    restartButton.classList.remove("fullHidden")
+
+    startButton.classList.add("fullHidden");
+    restartButton.classList.remove("fullHidden");
+
+    if (settings_data[2].checked === true) {
+        await sleep(1000);
+    }
+
+    arrow.style.animationPlayState = "running";
 });
 
 // Обработчик кнопки рестарта
-restartButton.addEventListener("click", () => {
+restartButton.addEventListener("click", async () => {
     arrow.style.animation = 'none';
     arrow.offsetHeight;
-    arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
-    arrow.style.animationPlayState = 'running';
+    
+    resetTimer();
+    startTimer();
+    
     photos = 0;
     combo = 0;
 
     photosText.textContent = `Фото: ${photos}`;
     comboText.textContent = `Комбо: ${combo}`;
+
+    if (settings_data[2].checked === true) {
+        await sleep(1000);
+    }
+
+    arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
+    arrow.style.animationPlayState = 'running';
 });
 
 // Обработчик клика по телу страницы
