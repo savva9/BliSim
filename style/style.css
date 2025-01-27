@@ -178,6 +178,9 @@ input:hover {
     transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
     border-radius: 3px; /* Скругленные углы */
     background-color: #414347; /* Цвет фона */
+    transform: translateX(0) scale(1.5); /* Сдвигаем и увеличиваем размер */
+    margin-left: 12px; /* Отступ */
+    margin-right: 12px; /* Отступ */
 }
 
 
