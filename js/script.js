@@ -27,6 +27,7 @@ const stripeContainer = document.getElementById("stripe");
 const square = document.getElementById('square');
 const arrow = document.querySelector(".arrow");
 const startButton = document.querySelector(".start-button");
+const restartButton = document.querySelector(".restart-button")
 const photosText = document.querySelector(".photo");
 const settings_data = document.querySelectorAll("#setting");
 const madeBy = document.querySelector(".made-by");
@@ -36,11 +37,15 @@ const ghostSettings = document.querySelector(".setting-choose-ghost");
 const overlay = document.createElement('div');
 const applyButton = document.getElementById('applyButton');
 const choosedGhostImg = document.querySelector(".selected-ghost");
+const customUrlInput = document.querySelector(".custom-url");
+const testImg = document.querySelector(".test-img");
+const comboText = document.querySelector(".combo");
 
 // Переменные для управления состоянием
 let choosedGhost = ["None", ""];
 let canClick = false;
 let photos = 0;
+let combo = 0;
 let isPaused = true;
 let selectedGhost = null;
 overlay.classList.add('overlay');
@@ -129,35 +134,43 @@ function trackArrowPosition() {
     requestAnimationFrame(trackArrowPosition);
 }
 
-// Обработчик кнопки старта/рестарта
+// Обработчик кнопки старта
 startButton.addEventListener("click", () => {
-    if (isPaused) {
-        arrow.style.animationPlayState = "running";
-        trackArrowPosition();
-        isPaused = false;
-        startButton.value = "Рестарт";
-        canClick = true;
-        photos = -1;
-    } else {
-        arrow.style.animation = 'none';
-        arrow.offsetHeight;
-        arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
-        arrow.style.animationPlayState = 'running';
-        photos = 0;
-    }
-    photosText.textContent = `Фото: 0`;
+    arrow.style.animationPlayState = "running";
+    trackArrowPosition();
+    isPaused = false;
+    canClick = true;
+    startButton.classList.add("fullHidden")
+    restartButton.classList.remove("fullHidden")
+});
+
+// Обработчик кнопки рестарта
+restartButton.addEventListener("click", () => {
+    arrow.style.animation = 'none';
+    arrow.offsetHeight;
+    arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
+    arrow.style.animationPlayState = 'running';
+    photos = 0;
+    combo = 0;
+
+    photosText.textContent = `Фото: ${photos}`;
+    comboText.textContent = `Комбо: ${combo}`;
 });
 
 // Обработчик клика по телу страницы
 document.querySelector("body").addEventListener("mousedown", () => {
     if (square.style.backgroundColor === "black" && !isPaused && canClick) {
         photos++;
-        photosText.textContent = `Фото: ${photos}`;
+        combo++;
         square.style.backgroundColor = "white";
     } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
         photos++;
-        photosText.textContent = `Фото: ${photos}`;
+        combo++;
+    } else {
+        combo = 0;
     }
+    photosText.textContent = `Фото: ${photos}`;
+    comboText.textContent = `Комбо: ${combo}`;
 });
 
 // Функции для скрытия и отображения полосы и стрелки
@@ -198,6 +211,8 @@ function hideGhostSettings() {
 document.querySelector(".choose-ghost").addEventListener("click", () => {
     showGhostSettings();
     canClick = false;
+    customUrlInput.value = "";
+    applyButton.disabled = true;
 });
 
 // Обработчик кликов на изображения призраков
@@ -208,8 +223,33 @@ document.querySelectorAll('.setting-ghost').forEach(ghost => {
         }
         ghost.classList.add('selected');
         selectedGhost = ghost;
-        applyButton.disabled = false;
+        if (ghost.alt != "Custom") {
+            applyButton.disabled = false;
+            customUrlInput.classList.add("fullHidden");
+            ghostSettings.style.height = "45%";
+        } else {
+            applyButton.disabled = true;
+            customUrlInput.classList.remove("fullHidden");
+            ghostSettings.style.height = "50%";
+        }
     });
+    if (ghost.alt === "Custom") {
+        customUrlInput.addEventListener("input", () => {
+            if (customUrlInput.value.length > 0) {
+                applyButton.disabled = true;
+                const img = new Image();
+                img.onload = () => {
+                    applyButton.disabled = false;
+                };
+                img.onerror = () => {
+                    applyButton.disabled = true;
+                };
+                img.src = customUrlInput.value;
+            } else {
+                applyButton.disabled = true;
+            }
+        });
+    }
 });
 
 // Обработчик кнопки "Применить" для выбора призрака
@@ -217,7 +257,10 @@ applyButton.addEventListener('click', () => {
     if (selectedGhost) {
         hideGhostSettings();
         choosedGhost = [selectedGhost.alt, selectedGhost.src];
-        choosedGhostImg.src = selectedGhost.src;
+        if (choosedGhost[0] === "Custom") {
+            choosedGhost[1] = customUrlInput.value;
+        }
+        choosedGhostImg.src = choosedGhost[1];
         canClick = true;
     }
 });

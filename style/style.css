@@ -15,6 +15,11 @@ body {
     visibility: hidden; /* Скрывает элемент, но сохраняет его место в разметке */
 }
 
+/* Полное скрытие */
+.fullHidden {
+    display: none !important; /* Скрывает элемент */
+}
+
 /* Стилизация полосы (#stripe) */
 #stripe {
     display: flex; /* Используем flexbox для расположения сегментов */
@@ -132,41 +137,53 @@ input:hover {
 }
 
 /* Стилизация фото */
+.combo,
 .photo {
     text-align: center; /* Центрируем текст */
     color: white; /* Цвет текста */
     background-color: #43464b; /* Цвет фона */
     border-radius: 3px; /* Скругление углов */
     padding: 5px 15px; /* Отступы внутри */
-    display: inline-block; /* Элемент будет только вокруг текста */
+    margin: 0 10px; /* Отступы слева и справа */
+}
+
+/* Текст внутри фото */
+.text-in-photo {
+    text-align: center; /* Центрируем текст */
+    display: flex;
+    margin-bottom: 10px; /* Отступ снизу */
     position: fixed; /* Фиксированное расположение */
     bottom: 40px; /* Отступ снизу */
     left: 50%; /* Центрируем по горизонтали */
     transform: translateX(-50%) scale(2.5); /* Сдвигаем и увеличиваем размер */
 }
 
-/* Текст внутри фото */
-.text-in-photo {
-    text-align: center; /* Центрируем текст */
-    margin-bottom: 10px; /* Отступ снизу */
-}
-
-/* Стили для иконки настроек */
-.settings {
+/* Утилиты */
+.utilites {
     position: fixed; /* Фиксированное расположение */
     bottom: 25px; /* Отступ снизу */
     right: 25px; /* Отступ справа */
+    display: flex; /* Включаем Flexbox */
+    gap: 10px; /* Расстояние между иконками */
+    flex-direction: row; /* Горизонтальное выравнивание */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+/* Стили для иконки настроек */
+.settings,
+.restart-button {
     width: 40px; /* Размер иконки */
     height: 40px; /* Размер иконки */
-    opacity: 0.9; /* Прозрачность */
+    opacity: 0.7; /* Прозрачность */
     transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
-    scale: 200%; /* Увеличиваем иконку */
     border-radius: 3px; /* Скругленные углы */
     background-color: #414347; /* Цвет фона */
 }
 
+
 /* Стили для иконки при наведении */
-.settings:hover {
+.settings:hover,
+.restart-button:hover {
     cursor: pointer; /* Указатель при наведении */
     opacity: 1; /* Полная непрозрачность */
 }
@@ -184,6 +201,29 @@ input:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень */
     z-index: 100; /* На переднем плане */
     scale: 125%; /* Увеличиваем размер */
+}
+
+/* Стили для поля ввода custom-url */
+.custom-url {
+    font-family: "Shantell Sans", serif; /* Шрифт для текста */
+    padding: 6px 12px; /* Отступы внутри */
+    font-size: 16px; /* Размер шрифта */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: text; /* Курсор при фокусе */
+    background-color: #323235; /* Цвет фона */
+    color: white; /* Цвет текста */
+    margin: 5px; /* Отступы вокруг */
+    scale: 150%; /* Увеличиваем инпут */
+    display: block; /* Блочный элемент */
+    width: 80%; /* Ширина поля */
+    max-width: 500px; /* Максимальная ширина */
+    text-align: center; /* Центрируем текст внутри поля */
+    margin-left: auto; /* Центрируем по горизонтали */
+    margin-right: auto; /* Центрируем по горизонтали */
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 35px; /* Отступ снизу */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
 }
 
 /* Стили для элементов меню настроек */
@@ -205,9 +245,9 @@ input:hover {
     padding: 5px 15px; /* Отступы внутри */
     display: inline-block; /* Элемент будет только вокруг текста */
     position: fixed; /* Фиксированное расположение */
-    bottom: 130px; /* Отступ снизу */
+    bottom: 50%; /* Отступ снизу */
     left: 50%; /* Центрируем по горизонтали */
-    transform: translateX(-37%) scale(1); /* Сдвигаем и увеличиваем размер */
+    transform: translateX(-37%) scale(2); /* Сдвигаем и увеличиваем размер */
 }
 
 /* Стиль для выбора призрака */
@@ -270,8 +310,16 @@ input:hover {
 
 /* Стиль для выбранного элемента */
 .selected {
-    box-shadow: 0 0 30px #b9b9b980; /* Тень */
-    background-color: #b9b9b980; /* Цвет фона */
+    box-shadow: 0 0 30px #b9b9b980 !important; /* Тень */
+    background-color: #b9b9b980 !important; /* Цвет фона */
+    border-radius: 10px !important; /* Скругленные углы */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease !important; /* Плавные переходы */
+}
+
+/* Выделение при наведении */
+.setting-ghost:hover {
+    box-shadow: 0 0 30px #44444480; /* Тень */
+    background-color: #44444480; /* Цвет фона */
     border-radius: 10px; /* Скругленные углы */
     transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Плавные переходы */
 }
@@ -293,7 +341,7 @@ input:hover {
     border-radius: 15px; /* Скругленные углы */
     cursor: pointer; /* Курсор при наведении */
     transition: background-color 0.3s; /* Плавный переход */
-    margin-top: 15px; /* Отступ сверху */
+    margin-top: 35px; /* Отступ сверху */
     display: block; /* Кнопка блочная */
     margin-left: auto; /* Центрируем по горизонтали */
     margin-right: auto; /* Центрируем по горизонтали */

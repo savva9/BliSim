@@ -30,12 +30,16 @@
 
     <!-- Блок с текстом и кнопкой старта -->
     <div class="text-in-photo">
-        <input class="start-button" type="button" value="Старт">
         <p class="photo">Фото: 0</p>
+        <p class="combo">Комбо: 0</p>
     </div>    
     
-    <!-- Иконка настроек -->
-    <img class="settings" src="img/settings_icon.svg" alt="Settings">
+    <!-- Утилиты -->
+    <div class="utilites">
+        <img class="restart-button fullHidden" src="img/Reload.svg" alt="Рестарт">
+        <img class="settings" src="img/Settings.svg" alt="Settings">
+        <input class="start-button" type="button" value="Старт">
+    </div>
 
     <!-- Меню настроек -->
     <div class="settings-menu">
@@ -77,10 +81,13 @@
             <img src="img/Ghosts/Female/OldCrone.png" alt="Old Crone" class="setting-ghost">
             <img src="img/Ghosts/Female/Patient07.png" alt="Patient 07" class="setting-ghost">
             <img src="img/Ghosts/Female/Argyro.png" alt="Argyro" class="setting-ghost">
+            <img src="img/Ghosts/Custom.png" alt="Custom" class="setting-ghost">
             <img src="img/Ghosts/None.png" alt="None" class="setting-ghost">
         </div>
 
         <!-- Кнопка подтверждения выбора призрака -->
+         <img src="" alt="" class="fullHidden test-img">
+        <input type="text" name="custom-url" id="custom-url" class="custom-url fullHidden">
         <input type="button" value="Применить" id="applyButton" disabled>
     </div>
 
