@@ -1,4 +1,4 @@
-// Суммируем все значения из первого элемента массива
+// Массив данных для расчета продолжительности и описания сегментов
 const blinkinsData = [
     [0.217, 1, ""],
     [0.379, 0, ""],
@@ -21,92 +21,98 @@ const blinkinsData = [
     [0.096, 1, ""],
     [0.258, 0, ""]
 ];
+
+// Получение элементов интерфейса
 const stripeContainer = document.getElementById("stripe");
 const square = document.getElementById('square');
 const arrow = document.querySelector(".arrow");
-const animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
 const startButton = document.querySelector(".start-button");
 const photosText = document.querySelector(".photo");
+const settings_data = document.querySelectorAll("#setting");
+const madeBy = document.querySelector(".made-by");
+const settingsIcon = document.querySelector(".settings");
+const settingsMenu = document.querySelector(".settings-menu");
+const ghostSettings = document.querySelector(".setting-choose-ghost");
+const overlay = document.createElement('div');
+const applyButton = document.getElementById('applyButton');
+const choosedGhostImg = document.querySelector(".selected-ghost");
+
+// Переменные для управления состоянием
 let choosedGhost = ["None", ""];
 let canClick = false;
 let photos = 0;
 let isPaused = true;
+let selectedGhost = null;
+overlay.classList.add('overlay');
+document.body.appendChild(overlay);
+
+// Расчет общей продолжительности анимации
+const animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
 arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
 arrow.style.animationPlayState = "paused";
 
-const settings_data = document.querySelectorAll("#setting");
+// Инициализация настроек
 settings_data[0].checked = true;
 settings_data[1].checked = true;
 
-// Получаем контейнер для полоски
+// Добавление сегментов на полосу
 blinkinsData.forEach(([lengthRatio, colorFlag, description]) => {
     const segment = document.createElement("div");
     segment.classList.add("segment");
 
-    // Рассчитываем ширину сегмента на основе первого значения, умноженного на 1000
+    // Рассчитываем ширину сегмента
     const segmentWidth = lengthRatio * 1000;
     segment.style.width = `${segmentWidth}px`;
     segment.style.backgroundColor = colorFlag === 1 ? "black" : "white";
 
-    // Создаем подсказку
+    // Создаем и добавляем подсказку
     const fullDescription = [
         `${lengthRatio * 1000}ms`,
         colorFlag ? "Visible" : "Invisible",
         description
     ];
 
-    if (fullDescription) {
-        const tooltip = document.createElement("div");
-        tooltip.classList.add("tooltip");
-        tooltip.style.bottom = description ? "-90px" : "-70px"
+    const tooltip = document.createElement("div");
+    tooltip.classList.add("tooltip");
+    tooltip.style.bottom = description ? "-90px" : "-70px";
+    tooltip.innerHTML = fullDescription.join('<br>');
 
-        // Разбиваем описание на строки с помощью <br>
-        tooltip.innerHTML = fullDescription.join('<br>'); // Разделяем строки
+    segment.appendChild(tooltip);
 
-        segment.appendChild(tooltip);
-
-        // Показываем подсказку при наведении
-        segment.addEventListener("mouseenter", () => {
-            tooltip.style.display = "block";
-        });
-        segment.addEventListener("mouseleave", () => {
-            tooltip.style.display = "none";
-        });
-    }
+    // Показываем подсказку при наведении
+    segment.addEventListener("mouseenter", () => tooltip.style.display = "block");
+    segment.addEventListener("mouseleave", () => tooltip.style.display = "none");
 
     stripeContainer.appendChild(segment);
 });
 
-// Авторы
-const madeBy = document.querySelector(".made-by")
+// Установка авторов
 madeBy.textContent += Math.round(Math.random()) ? "savva_9 & kv1nk" : "kv1nk & savva_9";
 
-// Обновляем позицию стрелки
+// Функция обновления позиции стрелки
 function updateArrowPosition() {
-    const arrowPosition = arrow.getBoundingClientRect().left - arrow.offsetWidth / 2; // Учитываем центр стрелки
+    const arrowPosition = arrow.getBoundingClientRect().left - arrow.offsetWidth / 2;
     let currentColor = null;
-
-    // Пройдем по всем сегментам и определим, под каким сегментом стрелка
     let accumulatedWidth = 0;
 
+    // Проходим по всем сегментам и проверяем, под каким сегментом находится стрелка
     document.querySelectorAll(".segment").forEach(segment => {
-        const segmentWidth = segment.offsetWidth + 1.5;
+        const segmentWidth = segment.offsetWidth + 0.5;
 
-        // Проверим, находится ли стрелка в пределах текущего сегмента
         if (arrowPosition >= accumulatedWidth && arrowPosition <= accumulatedWidth + segmentWidth) {
             currentColor = segment.style.backgroundColor;
 
-            // Обновляем фон для элемента square
+            // Обновляем фон квадрата
             if (currentColor === "white") {
                 square.style.backgroundImage = "none";
-                square.style.backgroundColor = "#4f5258"; // Устанавливаем фон в случае белого цвета
+                square.style.backgroundColor = "#4f5258";
             } else {
                 if (choosedGhost[0] === "None") {
                     square.style.backgroundImage = "none";
-                    square.style.backgroundColor = "black"; // Черный квадрат
+                    square.style.backgroundColor = "black";
                 } else {
                     square.style.backgroundImage = `url('${choosedGhost[1]}')`;
-                    square.style.backgroundSize = "contain"; // Изображение не обрезается
+                    square.style.backgroundSize = "contain";
                     square.style.backgroundRepeat = "no-repeat";
                     square.style.backgroundPosition = "center";
                     square.style.overflow = "visible";
@@ -117,47 +123,45 @@ function updateArrowPosition() {
     });
 }
 
-
-// Настроим функцию, которая будет обновлять позицию стрелки на каждом кадре анимации
+// Функция отслеживания позиции стрелки
 function trackArrowPosition() {
     updateArrowPosition();
     requestAnimationFrame(trackArrowPosition);
 }
 
+// Обработчик кнопки старта/рестарта
 startButton.addEventListener("click", () => {
     if (isPaused) {
         arrow.style.animationPlayState = "running";
         trackArrowPosition();
         isPaused = false;
-        startButton.value = "Рестарт"
-        canClick = true
+        startButton.value = "Рестарт";
+        canClick = true;
         photos = -1;
     } else {
-        arrow.style.animation = 'none'; // Останавливаем анимацию
-        arrow.offsetHeight; // Принудительное пересчитывание для сброса стилей
+        arrow.style.animation = 'none';
+        arrow.offsetHeight;
         arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
-        arrow.style.animationPlayState = 'running'; // Перезапускаем анимацию
+        arrow.style.animationPlayState = 'running';
         photos = 0;
     }
     photosText.textContent = `Фото: 0`;
 });
 
-
-document.querySelector("body").addEventListener("click", () => {
-    // Проверяем, является ли квадрат черным и нет ли паузы
+// Обработчик клика по телу страницы
+document.querySelector("body").addEventListener("mousedown", () => {
+    console.log(square.style.backgroundColor, !isPaused, canClick)
     if (square.style.backgroundColor === "black" && !isPaused && canClick) {
         photos++;
         photosText.textContent = `Фото: ${photos}`;
-
-        square.style.backgroundColor = "white"; // Короткое изменение цвета
-    }
-    else if (square.style.backgroundImage != "none" && !isPaused && canClick) {
+        square.style.backgroundColor = "white";
+    } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
         photos++;
         photosText.textContent = `Фото: ${photos}`;
     }
 });
 
-
+// Функции для скрытия и отображения полосы и стрелки
 const hideStripeAndArrow = () => {
     stripeContainer.classList.add("hidden");
     arrow.classList.add("hidden");
@@ -168,98 +172,53 @@ const showStripeAndArrow = () => {
     arrow.classList.remove("hidden");
 };
 
-const settingsIcon = document.querySelector(".settings");
-const settingsMenu = document.querySelector(".settings-menu");
-
-// Обработчик события для отображения/скрытия меню
+// Обработчик меню настроек
 settingsIcon.addEventListener("click", () => {
-    // Проверяем, скрыто ли меню
-    if (settingsMenu.style.display === "none" || settingsMenu.style.display === "") {
-        settingsMenu.style.display = "block"; // Показываем меню
-    } else {
-        settingsMenu.style.display = "none"; // Скрываем меню
-    }
+    settingsMenu.style.display = (settingsMenu.style.display === "none" || settingsMenu.style.display === "") ? "block" : "none";
 });
-settingsIcon.click()
+settingsIcon.click();
 
-document.querySelector(".settings-menu").addEventListener("change", () => {
+settingsMenu.addEventListener("change", () => {
     settings_data[0].checked ? stripeContainer.classList.remove("hidden") : stripeContainer.classList.add("hidden");
     settings_data[1].checked ? arrow.classList.remove("hidden") : arrow.classList.add("hidden");
     showGhost = settings_data[2].checked;
 });
 
-
-
-
-const ghostSettings = document.querySelector(".setting-choose-ghost");
-const overlay = document.createElement('div');
-overlay.classList.add('overlay');
-const applyButton = document.getElementById('applyButton');
-document.body.appendChild(overlay);
-
+// Функции для отображения и скрытия настроек выбора призраков
 function showGhostSettings() {
-    overlay.style.display = 'block'; // Показываем затемнение фона
-    ghostSettings.style.display = 'block'; // Показываем окно выбора призраков
+    overlay.style.display = 'block';
+    ghostSettings.style.display = 'block';
 }
 
 function hideGhostSettings() {
-    
-    overlay.style.display = 'none'; // Скрываем затемнение
-    ghostSettings.style.display = 'none'; // Скрываем окно
+    overlay.style.display = 'none';
+    ghostSettings.style.display = 'none';
 }
+
+// Обработчик выбора призрака
 document.querySelector(".choose-ghost").addEventListener("click", () => {
     showGhostSettings();
     canClick = false;
 });
 
-
-const ghosts = document.querySelectorAll('.setting-ghost');
-let selectedGhost = null;
-
-ghosts.forEach(ghost => {
-    ghost.addEventListener('click', () => {
-        // Если есть выбранный призрак, убираем обводку с плавным эффектом
-        if (selectedGhost) {
-            selectedGhost.classList.remove('selected');
-        }
-
-        // Добавляем обводку на текущее изображение с плавным эффектом
-        ghost.classList.add('selected');
-
-        // Обновляем выбранный призрак
-        selectedGhost = ghost;
-    });
-});
-
-
-
-// Обработчик клика по изображению призрака
+// Обработчик кликов на изображения призраков
 document.querySelectorAll('.setting-ghost').forEach(ghost => {
     ghost.addEventListener('click', () => {
-        // Убираем обводку с предыдущего выбранного призрака
         if (selectedGhost) {
             selectedGhost.classList.remove('selected');
         }
-
-        // Добавляем обводку на текущее изображение
         ghost.classList.add('selected');
-        
-        // Обновляем выбранного призрака
         selectedGhost = ghost;
-        
-        // Разблокируем кнопку
         applyButton.disabled = false;
     });
 });
 
-const choosedGhostImg = document.querySelector(".selected-ghost"); 
-
-// Обработчик клика по кнопке "Применить"
+// Обработчик кнопки "Применить" для выбора призрака
 applyButton.addEventListener('click', () => {
     if (selectedGhost) {
-        hideGhostSettings()
-        choosedGhost = [selectedGhost.alt, selectedGhost.src]
-        choosedGhostImg.src = selectedGhost.src
-        canClick = true
+        hideGhostSettings();
+        choosedGhost = [selectedGhost.alt, selectedGhost.src];
+        choosedGhostImg.src = selectedGhost.src;
+        canClick = true;
     }
 });
