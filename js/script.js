@@ -221,7 +221,6 @@ restartButton.addEventListener("click", async () => {
 // Обработчик клика по телу страницы
 clickers.forEach(clicker => {
     clicker.addEventListener("mousedown", () => {
-        console.log(123)
         if (square.style.backgroundColor === "black" && !isPaused && canClick) {
             photos++;
             combo++;
