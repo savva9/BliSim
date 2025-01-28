@@ -41,6 +41,7 @@ const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
 const testImg = document.querySelector(".test-img");
 const comboText = document.querySelector(".combo");
+const clicker = document.querySelector(".clicker")
 
 // Переменные для управления состоянием
 let choosedGhost = ["None", ""];
@@ -216,7 +217,7 @@ restartButton.addEventListener("click", async () => {
 });
 
 // Обработчик клика по телу страницы
-document.querySelector("body").addEventListener("mousedown", () => {
+clicker.addEventListener("mousedown", () => {
     if (square.style.backgroundColor === "black" && !isPaused && canClick) {
         photos++;
         combo++;
