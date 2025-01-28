@@ -41,7 +41,9 @@ const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
 const testImg = document.querySelector(".test-img");
 const comboText = document.querySelector(".combo");
-const clickers = document.querySelectorAll(".clicker")
+const clickers = document.querySelectorAll(".clicker");
+const FAQ = document.querySelector(".FAQ");
+const FAQButton = document.querySelector(".FAQ-button")
 
 // Переменные для управления состоянием
 let choosedGhost = ["None", ""];
@@ -219,6 +221,7 @@ restartButton.addEventListener("click", async () => {
 // Обработчик клика по телу страницы
 clickers.forEach(clicker => {
     clicker.addEventListener("mousedown", () => {
+        console.log(123)
         if (square.style.backgroundColor === "black" && !isPaused && canClick) {
             photos++;
             combo++;
@@ -324,5 +327,22 @@ applyButton.addEventListener('click', () => {
         }
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
+    }
+});
+
+// Показать FAQ
+FAQButton.addEventListener("click", () => {
+    FAQ.style.display = "block";
+    overlay.style.display = "block";
+});
+
+// Закрытие FAQ при клике вне области меню
+document.addEventListener("click", (event) => {
+    const isClickInsideFAQ = FAQ.contains(event.target);
+    const isClickOnFAQButton = FAQButton.contains(event.target);
+
+    if (!isClickInsideFAQ && !isClickOnFAQButton) {
+        FAQ.style.display = "none";
+        overlay.style.display = "none";
     }
 });

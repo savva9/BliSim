@@ -182,6 +182,62 @@ input:hover {
     align-items: center; /* Выравнивание по вертикали */
 }
 
+/* Утилиты слева */
+.left-utilites {
+    position: fixed; /* Фиксированное расположение */
+    bottom: 25px; /* Отступ снизу */
+    left: 25px; /* Отступ справа */
+    display: flex; /* Включаем Flexbox */
+    gap: 10px; /* Расстояние между иконками */
+    flex-direction: row; /* Горизонтальное выравнивание */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+/* FAQ */
+.FAQ-button {
+    width: 40px; /* Размер иконки */
+    height: 40px; /* Размер иконки */
+    opacity: 0.9; /* Прозрачность */
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
+    border-radius: 5px; /* Скругленные углы */
+    transform: translateX(0) scale(1.4); /* Сдвигаем и увеличиваем размер */
+    margin-left: -6px; /* Отступ */
+    margin-right: 12px; /* Отступ */
+    margin-bottom: 40px; /* Отступ */
+}
+
+/* Стиль для выбора призрака */
+.FAQ {
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Фиксированное расположение */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Точное центрирование */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    padding: 20px; /* Отступы внутри */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень */
+    z-index: 101 !important; /* На переднем плане */
+    animation: fadeIn 0.5s ease-out; /* Анимация */
+    width: 55%; /* Ширина блока */
+    height: 45%; /* Высота блока */
+    overflow: auto; /* Скроллинг при необходимости */
+    color: white; /* Цвет текста */
+}
+
+/* Анимация появления для выбора призрака */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Начальная прозрачность */
+        transform: translate(-50%, -60%); /* Начальная позиция */
+    }
+    to {
+        opacity: 1; /* Конечная прозрачность */
+        transform: translate(-50%, -50%); /* Конечная позиция */
+    }
+}
+
 /* Стили для иконки настроек */
 .settings,
 .restart-button {
@@ -199,7 +255,8 @@ input:hover {
 
 /* Стили для иконки при наведении */
 .settings:hover,
-.restart-button:hover {
+.restart-button:hover,
+.FAQ-button:hover {
     cursor: pointer; /* Указатель при наведении */
     opacity: 1; /* Полная непрозрачность */
 }
