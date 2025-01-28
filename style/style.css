@@ -405,7 +405,7 @@ input:hover {
 }
 
 /* Растягивание .clicker на всю страницу */
-.clicker {
+.BGClicker {
     position: fixed;
     top: 0;
     left: 0;
@@ -420,6 +420,6 @@ input:hover {
 }
 
 /* Исключение .clicker из общего правила */
-.clicker {
+.BGClicker {
     z-index: 0 !important; /* Убедимся, что .clicker остается на заднем плане */
 }

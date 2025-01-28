@@ -41,7 +41,7 @@ const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
 const testImg = document.querySelector(".test-img");
 const comboText = document.querySelector(".combo");
-const clicker = document.querySelector(".clicker")
+const clickers = document.querySelectorAll(".clicker")
 
 // Переменные для управления состоянием
 let choosedGhost = ["None", ""];
@@ -217,20 +217,23 @@ restartButton.addEventListener("click", async () => {
 });
 
 // Обработчик клика по телу страницы
-clicker.addEventListener("mousedown", () => {
-    if (square.style.backgroundColor === "black" && !isPaused && canClick) {
-        photos++;
-        combo++;
-        square.style.backgroundColor = "white";
-    } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
-        photos++;
-        combo++;
-    } else {
-        combo = 0;
-    }
-    photosText.textContent = `Фото: ${photos}`;
-    comboText.textContent = `Комбо: ${combo}`;
-});
+clickers.forEach(clicker => {
+    clicker.addEventListener("mousedown", () => {
+        if (square.style.backgroundColor === "black" && !isPaused && canClick) {
+            photos++;
+            combo++;
+            square.style.backgroundColor = "white";
+        } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
+            photos++;
+            combo++;
+        } else {
+            combo = 0;
+        }
+        photosText.textContent = `Фото: ${photos}`;
+        comboText.textContent = `Комбо: ${combo}`;
+    });
+})
+
 
 // Функции для скрытия и отображения полосы и стрелки
 const hideStripeAndArrow = () => {
