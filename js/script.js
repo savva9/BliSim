@@ -236,6 +236,11 @@ clickers.forEach(clicker => {
     });
 })
 
+// Отключаем контекстное меню ПКМ
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+
 
 // Функции для скрытия и отображения полосы и стрелки
 const hideStripeAndArrow = () => {
