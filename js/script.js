@@ -35,7 +35,7 @@ const madeBy = document.querySelector(".made-by");
 const settingsIcon = document.querySelector(".settings");
 const settingsMenu = document.querySelector(".settings-menu");
 const ghostSettings = document.querySelector(".setting-choose-ghost");
-const overlay = document.createElement("div");
+const overlay = document.querySelector(".overlay");
 const applyButton = document.getElementById('applyButton');
 const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
@@ -55,8 +55,7 @@ let selectedGhost = null;
 let intervalTimer;
 let elapsedTimer = 0;
 let isRunningTimer = false;
-overlay.classList.add('overlay');
-document.body.appendChild(overlay);
+let isFAQOpen = false;
 
 // Расчет общей продолжительности анимации
 const animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
@@ -265,23 +264,14 @@ settingsMenu.addEventListener("change", () => {
     showGhost = settings_data[1].checked;
 });
 
-// Функции для отображения и скрытия настроек выбора призраков
-function showGhostSettings() {
-    overlay.style.display = 'block';
-    ghostSettings.style.display = 'block';
-}
-
-function hideGhostSettings() {
-    overlay.style.display = 'none';
-    ghostSettings.style.display = 'none';
-}
-
 // Обработчик выбора призрака
 document.querySelector(".choose-ghost").addEventListener("click", () => {
-    showGhostSettings();
-    canClick = false;
-    customUrlInput.value = "";
-    applyButton.disabled = true;
+    overlay.style.display = 'block';
+    ghostSettings.style.display = 'block';
+    
+    // canClick = false;
+    // customUrlInput.value = "";
+    // applyButton.disabled = true;
 });
 
 // Обработчик кликов на изображения призраков
@@ -324,7 +314,9 @@ document.querySelectorAll('.setting-ghost').forEach(ghost => {
 // Обработчик кнопки "Применить" для выбора призрака
 applyButton.addEventListener('click', () => {
     if (selectedGhost) {
-        hideGhostSettings();
+        overlay.style.display = 'none';
+        ghostSettings.style.display = 'none';
+
         choosedGhost = [selectedGhost.alt, selectedGhost.src];
         if (choosedGhost[0] === "Custom") {
             choosedGhost[1] = customUrlInput.value;
@@ -336,6 +328,7 @@ applyButton.addEventListener('click', () => {
 
 // Показать FAQ
 FAQButton.addEventListener("click", () => {
+    isFAQOpen = true;
     FAQ.style.display = "block";
     overlay.style.display = "block";
 });
@@ -345,7 +338,7 @@ document.addEventListener("click", (event) => {
     const isClickInsideFAQ = FAQ.contains(event.target);
     const isClickOnFAQButton = FAQButton.contains(event.target);
 
-    if (!isClickInsideFAQ && !isClickOnFAQButton) {
+    if (!isClickInsideFAQ && !isClickOnFAQButton && isFAQOpen) {
         FAQ.style.display = "none";
         overlay.style.display = "none";
     }
