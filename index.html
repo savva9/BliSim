@@ -17,22 +17,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neucha&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <!-- Полоса с индикатором (стрелкой) -->
     <div id="stripe">
         <div class="arrow"></div>
     </div>
-    
+
+    <!-- Таймер -->
+    <div id="timer">
+        <p class="timer">0:00.0</p>
+    </div>
+
     <!-- Контейнер с призраком -->
     <div class="ghost">
-        <div class="square" id="square"></div>
+        <div class="square clicker" id="square"></div>
     </div>
 
     <!-- Блок с текстом и кнопкой старта -->
     <div class="text-in-photo">
         <p class="photo">Фото: 0</p>
         <p class="combo">Комбо: 0</p>
-    </div>    
+    </div>
     
     <!-- Утилиты -->
     <div class="utilites">
@@ -40,21 +44,58 @@
         <img class="settings" src="img/Settings.svg" alt="Settings">
         <input class="start-button" type="button" value="Старт">
     </div>
+    
+    <!-- Утилиты слева -->
+    <div class="left-utilites">
+        <p class="made-by">Сделано </p>
+        <img class="FAQ-button" src="img/QuestionMark.svg" alt="FAQ">
+    </div>
+
+    <!-- FAQ -->
+     <div class="FAQ">
+        <h2 style="color: #5a86d8;">FAQ (Часто задаваемые вопросы)</h2>
+  
+        <div>
+            <h3 style="color: #2bb32b;">- Что это такое?</h3>
+            <p>Утилита, имитирующая мерцания призраков в игре Фазмафобия и дающая возможность научиться фотографировать призрака.</p>
+        </div>
+
+        <div>
+            <h3 style="color: #2bb32b;">- Как использовать?</h3>
+            <p>В настройках выбрать модель и тип мерцаний, после чего нажать кнопку старт.</p>
+        </div>
+
+        <div>
+            <h3 style="color: #2bb32b;">- Почему не регает клики?</h3>
+            <p>Засчитывает только когда видно призрака. Убедитесь, что вы не нажимаете на клавишу рестарт.</p>
+        </div>
+
+        <div>
+            <h3 style="color: #2bb32b;">- Можно ли добавить своё изображение?</h3>
+            <p>Да, выбрать custom и вставить ссылку из интернета (можно загрузить, например, в Дискорд и скопировать ссылку).</p>
+        </div>
+     </div>
 
     <!-- Меню настроек -->
     <div class="settings-menu">
         <!-- Настройка отображения таймлайна -->
         <div class="setting-item">
-            <label for="setting1">Показывать таймлайн:</label>
+            <label for="setting1" title="Отображение переода мерцаний призрака">Показывать таймлайн:</label>
             <input type="checkbox" id="setting">
         </div>
 
         <!-- Настройка отображения стрелочки -->
         <div class="setting-item">
-            <label for="setting2">Показывать стрелочку:</label>
+            <label for="setting2" title="Индикатор текущего мерцания призрака">Показывать стрелочку:</label>
             <input type="checkbox" id="setting">
         </div>
 
+        <!-- Настройка добавлении 1 секунды -->
+        <div class="setting-item">
+            <label for="setting3" title="Правильное отображения мерцаний в начале охоты">Добавить 1 секунду</label>
+            <input type="checkbox" id="setting">
+        </div>
+        
         <!-- Настройка выбора призрака -->
         <div class="setting-item ghost-conteiner">
             <input class="choose-ghost" type="button" value="Выбрать призрака">
@@ -84,17 +125,28 @@
             <img src="img/Ghosts/Custom.png" alt="Custom" class="setting-ghost">
             <img src="img/Ghosts/None.png" alt="None" class="setting-ghost">
         </div>
-
+ 
         <!-- Кнопка подтверждения выбора призрака -->
-         <img src="" alt="" class="fullHidden test-img">
-        <input type="text" name="custom-url" id="custom-url" class="custom-url fullHidden">
+        <img src="" alt="" class="fullHidden test-img">
+        <input type="text" name="custom-url" id="custom-url" class="custom-url fullHidden" placeholder="Вставьте ссылку">
         <input type="button" value="Применить" id="applyButton" disabled>
     </div>
 
     <!-- Блок с информацией об авторстве -->
-    <p class="made-by">Сделано </p>
+    <div class="clicker BGClicker"></div>
+
+    <!-- Затемнение -->
+    <div class="overlay"></div>
 
     <!-- Подключение JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="js/utilites.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/FAQ.js"></script>
+    <script src="js/chooseGhost.js"></script>
+    <script src="js/arrow.js"></script>
+    <script src="js/start.js"></script>
+    <script src="js/photo.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/settings.js"></script>
 </body>
 </html>

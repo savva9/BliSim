@@ -66,7 +66,7 @@ body {
     border-radius: 1px; /* Скругление углов стрелки */
     clip-path: polygon(50% 0%, 100% 100%, 0% 100%); /* Формируем треугольник */
     transform: translateY(-50%); /* Выравниваем по вертикали */
-    z-index: 10; /* Поверх остальных элементов */
+    z-index: 10 !important; /* Поверх остальных элементов */
 }
 
 /* Анимация для стрелочки */
@@ -79,7 +79,7 @@ body {
     }
 }
 
-/* Стиль для надписи "Made by" внизу */
+/* Стиль для надписи "Made by" */
 .made-by {
     position: fixed; /* Фиксированное расположение */
     bottom: 0px; /* Отступ от нижнего края */
@@ -89,6 +89,19 @@ body {
     background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
     padding: 5px 10px; /* Отступы внутри */
     border-radius: 5px; /* Скругление углов */
+}
+
+/* Стиль для надписи "timer" */
+.timer {
+    position: fixed; /* Фиксированное расположение */
+    top: 120px; /* Отступ от нижнего края */
+    left: 10px; /* Отступ от левого края */
+    font-size: 32px; /* Размер шрифта */
+    color: white; /* Цвет текста */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    padding: 5px 10px; /* Отступы внутри */
+    border-radius: 5px; /* Скругление углов */
+    width: 95px; /* Фиксированная ширина */
 }
 
 /* Стиль для квадратов с фоном */
@@ -169,6 +182,62 @@ input:hover {
     align-items: center; /* Выравнивание по вертикали */
 }
 
+/* Утилиты слева */
+.left-utilites {
+    position: fixed; /* Фиксированное расположение */
+    bottom: 25px; /* Отступ снизу */
+    left: 25px; /* Отступ справа */
+    display: flex; /* Включаем Flexbox */
+    gap: 10px; /* Расстояние между иконками */
+    flex-direction: row; /* Горизонтальное выравнивание */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+/* FAQ */
+.FAQ-button {
+    width: 40px; /* Размер иконки */
+    height: 40px; /* Размер иконки */
+    opacity: 0.9; /* Прозрачность */
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
+    border-radius: 5px; /* Скругленные углы */
+    transform: translateX(0) scale(1.4); /* Сдвигаем и увеличиваем размер */
+    margin-left: -6px; /* Отступ */
+    margin-right: 12px; /* Отступ */
+    margin-bottom: 40px; /* Отступ */
+}
+
+/* Стиль для выбора призрака */
+.FAQ {
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Фиксированное расположение */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Точное центрирование */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    padding: 20px; /* Отступы внутри */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень */
+    z-index: 101 !important; /* На переднем плане */
+    animation: fadeIn 0.5s ease-out; /* Анимация */
+    width: 55%; /* Ширина блока */
+    height: 45%; /* Высота блока */
+    overflow: auto; /* Скроллинг при необходимости */
+    color: white; /* Цвет текста */
+}
+
+/* Анимация появления для выбора призрака */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Начальная прозрачность */
+        transform: translate(-50%, -60%); /* Начальная позиция */
+    }
+    to {
+        opacity: 1; /* Конечная прозрачность */
+        transform: translate(-50%, -50%); /* Конечная позиция */
+    }
+}
+
 /* Стили для иконки настроек */
 .settings,
 .restart-button {
@@ -186,7 +255,8 @@ input:hover {
 
 /* Стили для иконки при наведении */
 .settings:hover,
-.restart-button:hover {
+.restart-button:hover,
+.FAQ-button:hover {
     cursor: pointer; /* Указатель при наведении */
     opacity: 1; /* Полная непрозрачность */
 }
@@ -202,7 +272,7 @@ input:hover {
     border-radius: 8px; /* Скругленные углы */
     display: none; /* Изначально скрыто */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень */
-    z-index: 100; /* На переднем плане */
+    z-index: 100 !important; /* На переднем плане */
     scale: 125%; /* Увеличиваем размер */
 }
 
@@ -264,7 +334,7 @@ input:hover {
     padding: 20px; /* Отступы внутри */
     border-radius: 10px; /* Скругленные углы */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень */
-    z-index: 101; /* На переднем плане */
+    z-index: 101 !important; /* На переднем плане */
     animation: fadeIn 0.5s ease-out; /* Анимация */
     width: 80%; /* Ширина блока */
     height: 45%; /* Высота блока */
@@ -308,7 +378,7 @@ input:hover {
     right: 0; /* Отступ справа */
     bottom: 0; /* Отступ снизу */
     background-color: #00000080; /* Полупрозрачный черный фон */
-    z-index: 100; /* На переднем плане */
+    z-index: 100 !important; /* На переднем плане */
 }
 
 /* Стиль для выбранного элемента */
@@ -387,6 +457,26 @@ input:hover {
 
 /* Стиль для выбранного призрака */
 .selected-ghost {
-    width: 250px; /* Фиксированная ширина */
+    max-width: 200px; /* Фиксированная ширина */
     height: auto; /* Автоматическая высота */
+}
+
+/* Растягивание .clicker на всю страницу */
+.BGClicker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Чтобы элемент был на заднем плане */
+}
+
+/* Все элементы кроме .clicker */
+* {
+    z-index: 1 !important; /* Устанавливаем z-index: 1 для всех элементов */
+}
+
+/* Исключение .clicker из общего правила */
+.BGClicker {
+    z-index: 0 !important; /* Убедимся, что .clicker остается на заднем плане */
 }
