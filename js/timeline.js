@@ -10,7 +10,7 @@ blinkinsData.forEach(([lengthRatio, colorFlag, description]) => {
 
     // Создаем и добавляем подсказку
     const fullDescription = [
-        `${lengthRatio * 1000}ms`,
+        `${lengthRatio * 1000}мс`,
         colorFlag ? "Видимый" : "Невидивый",
         description
     ];
