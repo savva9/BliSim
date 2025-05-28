@@ -23,6 +23,7 @@ function updateArrowPosition() {
                 square.style.backgroundImage = "none";
                 square.style.backgroundColor = "#4f5258";
             } else {
+                console.log(choosedGhost)
                 if (choosedGhost[0] === "None") {
                     square.style.backgroundImage = "none";
                     square.style.backgroundColor = "black";

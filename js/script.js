@@ -23,8 +23,9 @@ const blinkinsData = [
 ];
 
 // Получение элементов интерфейса
+const timeDisplay = document.querySelector(".timer");
 const stripeContainer = document.getElementById("stripe");
-const square = document.getElementById('square');
+const square = document.getElementById("square");
 const arrow = document.querySelector(".arrow");
 const startButton = document.querySelector(".start-button");
 const restartButton = document.querySelector(".restart-button")
@@ -34,12 +35,15 @@ const madeBy = document.querySelector(".made-by");
 const settingsIcon = document.querySelector(".settings");
 const settingsMenu = document.querySelector(".settings-menu");
 const ghostSettings = document.querySelector(".setting-choose-ghost");
-const overlay = document.createElement('div');
+const overlay = document.querySelector(".overlay");
 const applyButton = document.getElementById('applyButton');
 const choosedGhostImg = document.querySelector(".selected-ghost");
 const customUrlInput = document.querySelector(".custom-url");
 const testImg = document.querySelector(".test-img");
 const comboText = document.querySelector(".combo");
+const clickers = document.querySelectorAll(".clicker");
+const FAQ = document.querySelector(".FAQ");
+const FAQButton = document.querySelector(".FAQ-button")
 
 // Переменные для управления состоянием
 let choosedGhost = ["None", ""];
@@ -48,8 +52,10 @@ let photos = 0;
 let combo = 0;
 let isPaused = true;
 let selectedGhost = null;
-overlay.classList.add('overlay');
-document.body.appendChild(overlay);
+let intervalTimer;
+let elapsedTimer = 0;
+let isRunningTimer = false;
+let isFAQOpen = false;
 
 // Расчет общей продолжительности анимации
 const animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
@@ -59,6 +65,10 @@ arrow.style.animationPlayState = "paused";
 // Инициализация настроек
 settings_data[0].checked = true;
 settings_data[1].checked = true;
+settings_data[2].checked = false;
+
+// Функция sleep
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // Добавление сегментов на полосу
 blinkinsData.forEach(([lengthRatio, colorFlag, description]) => {
@@ -134,44 +144,102 @@ function trackArrowPosition() {
     requestAnimationFrame(trackArrowPosition);
 }
 
+// Таймер
+function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = String(Math.floor(totalSeconds / 60)).padStart(1, '0');
+    const seconds = String(totalSeconds % 60).padStart(2, '0');
+    const milliseconds = String(Math.floor((ms % 1000) / 100)).padStart(1, '0');
+    return `${minutes}:${seconds}.${milliseconds}`;
+}
+
+// Обновление дисплея
+function updateTimerDisplay() {
+    timeDisplay.textContent = formatTime(elapsedTimer);
+}
+
+// Старт таймера
+function startTimer() {
+    if (isRunningTimer) return;
+    isRunningTimer = true;
+    const startTime = Date.now() - elapsedTimer;
+    intervalTimer = setInterval(() => {
+        elapsedTimer = Date.now() - startTime;
+        updateTimerDisplay();
+    }, 10);
+}
+
+// Ресет таймера
+function resetTimer() {
+    clearInterval(intervalTimer);
+    isRunningTimer = false;
+    elapsedTimer = 0;
+    updateTimerDisplay();
+}
+
 // Обработчик кнопки старта
-startButton.addEventListener("click", () => {
-    arrow.style.animationPlayState = "running";
+startButton.addEventListener("click", async () => {
+    startTimer();
     trackArrowPosition();
+    
     isPaused = false;
     canClick = true;
-    startButton.classList.add("fullHidden")
-    restartButton.classList.remove("fullHidden")
+
+    startButton.classList.add("fullHidden");
+    restartButton.classList.remove("fullHidden");
+
+    if (settings_data[2].checked === true) {
+        await sleep(1000);
+    }
+
+    arrow.style.animationPlayState = "running";
 });
 
 // Обработчик кнопки рестарта
-restartButton.addEventListener("click", () => {
+restartButton.addEventListener("click", async () => {
     arrow.style.animation = 'none';
     arrow.offsetHeight;
-    arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
-    arrow.style.animationPlayState = 'running';
+    
+    resetTimer();
+    startTimer();
+    
     photos = 0;
     combo = 0;
 
     photosText.textContent = `Фото: ${photos}`;
     comboText.textContent = `Комбо: ${combo}`;
+
+    if (settings_data[2].checked === true) {
+        await sleep(1000);
+    }
+
+    arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
+    arrow.style.animationPlayState = 'running';
 });
 
 // Обработчик клика по телу страницы
-document.querySelector("body").addEventListener("mousedown", () => {
-    if (square.style.backgroundColor === "black" && !isPaused && canClick) {
-        photos++;
-        combo++;
-        square.style.backgroundColor = "white";
-    } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
-        photos++;
-        combo++;
-    } else {
-        combo = 0;
-    }
-    photosText.textContent = `Фото: ${photos}`;
-    comboText.textContent = `Комбо: ${combo}`;
+clickers.forEach(clicker => {
+    clicker.addEventListener("mousedown", () => {
+        if (square.style.backgroundColor === "black" && !isPaused && canClick) {
+            photos++;
+            combo++;
+            square.style.backgroundColor = "white";
+        } else if (square.style.backgroundImage !== "none" && !isPaused && canClick) {
+            photos++;
+            combo++;
+        } else {
+            combo = 0;
+        }
+        photosText.textContent = `Фото: ${photos}`;
+        comboText.textContent = `Комбо: ${combo}`;
+    });
+})
+
+// Отключаем контекстное меню ПКМ
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
 });
+
 
 // Функции для скрытия и отображения полосы и стрелки
 const hideStripeAndArrow = () => {
@@ -196,23 +264,14 @@ settingsMenu.addEventListener("change", () => {
     showGhost = settings_data[1].checked;
 });
 
-// Функции для отображения и скрытия настроек выбора призраков
-function showGhostSettings() {
-    overlay.style.display = 'block';
-    ghostSettings.style.display = 'block';
-}
-
-function hideGhostSettings() {
-    overlay.style.display = 'none';
-    ghostSettings.style.display = 'none';
-}
-
 // Обработчик выбора призрака
 document.querySelector(".choose-ghost").addEventListener("click", () => {
-    showGhostSettings();
-    canClick = false;
-    customUrlInput.value = "";
-    applyButton.disabled = true;
+    overlay.style.display = 'block';
+    ghostSettings.style.display = 'block';
+    
+    // canClick = false;
+    // customUrlInput.value = "";
+    // applyButton.disabled = true;
 });
 
 // Обработчик кликов на изображения призраков
@@ -255,12 +314,32 @@ document.querySelectorAll('.setting-ghost').forEach(ghost => {
 // Обработчик кнопки "Применить" для выбора призрака
 applyButton.addEventListener('click', () => {
     if (selectedGhost) {
-        hideGhostSettings();
+        overlay.style.display = 'none';
+        ghostSettings.style.display = 'none';
+
         choosedGhost = [selectedGhost.alt, selectedGhost.src];
         if (choosedGhost[0] === "Custom") {
             choosedGhost[1] = customUrlInput.value;
         }
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
+    }
+});
+
+// Показать FAQ
+FAQButton.addEventListener("click", () => {
+    isFAQOpen = true;
+    FAQ.style.display = "block";
+    overlay.style.display = "block";
+});
+
+// Закрытие FAQ при клике вне области меню
+document.addEventListener("click", (event) => {
+    const isClickInsideFAQ = FAQ.contains(event.target);
+    const isClickOnFAQButton = FAQButton.contains(event.target);
+
+    if (!isClickInsideFAQ && !isClickOnFAQButton && isFAQOpen) {
+        FAQ.style.display = "none";
+        overlay.style.display = "none";
     }
 });
