@@ -9,7 +9,6 @@ document.querySelector(".choose-ghost-blink").addEventListener("click", () => {
 
 applyButtonBlink.forEach(but => {
     but.addEventListener('click', () => {
-        console.log(but);
         overlay.style.display = 'none';
         ghostSettingsBlink.style.display = 'none';
 
@@ -20,8 +19,16 @@ applyButtonBlink.forEach(but => {
         })
 
         blinkinsData = blinkinsDataAll[choosedGhostBlink];
-        console.log(blinkinsData);
+
+        animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
         createLine();
+
+        arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
+        arrow.style.animationPlayState = "paused";
+
+        if (startButton.className === "fullHidden") {
+            restartButton.click();
+        }
     });
 })
 

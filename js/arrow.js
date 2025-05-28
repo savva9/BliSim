@@ -1,7 +1,7 @@
 const arrow = document.querySelector(".arrow");
 
 // Расчет общей продолжительности анимации
-const animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
+let animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
 arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
 arrow.style.animationPlayState = "paused";
 
@@ -23,7 +23,6 @@ function updateArrowPosition() {
                 square.style.backgroundImage = "none";
                 square.style.backgroundColor = "#4f5258";
             } else {
-                console.log(choosedGhost)
                 if (choosedGhost[0] === "None") {
                     square.style.backgroundImage = "none";
                     square.style.backgroundColor = "black";
