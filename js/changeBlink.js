@@ -25,8 +25,8 @@ applyButtonBlink.forEach(but => {
 
         arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
         arrow.style.animationPlayState = "paused";
-
-        if (startButton.className === "fullHidden") {
+        
+        if (startButton.className.indexOf("fullHidden") >= 0) {
             restartButton.click();
         }
     });
