@@ -1,12 +1,14 @@
 const ghostSettingsBlink = document.querySelector(".setting-choose-ghost-blink");
-const applyButtonBlink = document.querySelectorAll('.applyButton-blink');
+const applyButtonBlink = document.querySelectorAll(".applyButton-blink");
+const blinkTypeText = document.querySelector(".blink-type");
 
 // Обработчик выбора призрака
 document.querySelector(".choose-ghost-blink").addEventListener("click", () => {
-    overlay.style.display = 'block';
-    ghostSettingsBlink.style.display = 'block';
+    overlay.style.display = "block";
+    ghostSettingsBlink.style.display = "block";
 });
 
+// Слушать кнопку мерцаний призрака
 applyButtonBlink.forEach(but => {
     but.addEventListener('click', () => {
         overlay.style.display = 'none';
@@ -29,7 +31,7 @@ applyButtonBlink.forEach(but => {
         if (startButton.className.indexOf("fullHidden") >= 0) {
             restartButton.click();
         }
+
+        blinkTypeText.textContent = `Тип мерцаний: ${choosedGhostBlink}`;
     });
-})
-
-
+});
