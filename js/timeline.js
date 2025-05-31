@@ -7,13 +7,13 @@ function createLine() {
 
         // Рассчитываем ширину сегмента
         const segmentWidth = lengthRatio * 1000;
-        segment.style.width = `${segmentWidth*100}px`;
+        segment.style.width = `${segmentWidth}px`;
         segment.style.backgroundColor = colorFlag === 1 ? "black" : "white";
 
         // Создаем и добавляем подсказку
         const fullDescription = [
-            `${lengthRatio * 1000}ms`,
-            colorFlag ? "Visible" : "Invisible",
+            `${(lengthRatio * 1000).toFixed(0)}мс`,
+            colorFlag ? "Видно" : "Не видно",
             description
         ];
 
