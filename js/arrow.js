@@ -29,12 +29,13 @@ function updateArrowPosition() {
             } else {
                 if (lastColor === "white") {
                     blinkCount++;
-                    console.log(blinkCount)
                     if ([12, 27, 39, 54, 62, 80, 105, 120].includes(blinkCount)) {
                         ghostChangeID++;
 
-                        if (ghostChangeID >= ghostGender.length) {
-                            ghostChangeID = 0;
+                        if (ghostGender != null) {
+                            if (ghostChangeID >= ghostGender.length) {
+                                ghostChangeID = 0;
+                            }
                         }
                     }
                 }
