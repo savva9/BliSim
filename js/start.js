@@ -39,4 +39,8 @@ restartButton.addEventListener("click", async () => {
 
     arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
     arrow.style.animationPlayState = 'running';
+
+    blinkCount = 0;
+    lastColor = "white";
+    ghostChangeID = 0;
 });

@@ -20,6 +20,12 @@ applyButtonBlink.forEach(but => {
             el.remove();
         })
 
+        if (["Обычный", "1 сбитый", "2 сбитый"].includes(choosedGhostBlink)) {
+            settings_data[3].disabled = false;
+        } else {
+            settings_data[3].disabled = true;
+        }
+
         blinkinsData = blinkinsDataAll[choosedGhostBlink];
 
         animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
@@ -27,7 +33,7 @@ applyButtonBlink.forEach(but => {
 
         arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
         arrow.style.animationPlayState = "paused";
-        
+
         if (startButton.className.indexOf("fullHidden") >= 0) {
             restartButton.click();
         }

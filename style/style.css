@@ -329,6 +329,10 @@ input:hover {
     margin-right: 10px;
 }
 
+.selected-ghost-settings {
+    max-height: 200px !important;
+}
+
 .ghost-row {
     display: flex;
     justify-content: space-between;
