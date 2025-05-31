@@ -3,6 +3,9 @@ let blinkCount = 0;
 let lastColor = "white";
 let ghostGender = null;
 let ghostChangeID = -1;
+let showBlinkSegment = [12, 27, 39, 54, 62, 80, 105, 120];
+let lastBlinkSegment = null;
+const segmentsList = document.querySelectorAll(".segment");
 
 // Расчет общей продолжительности анимации
 let animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
@@ -37,7 +40,20 @@ function updateArrowPosition() {
                                 ghostChangeID = 0;
                             }
                         }
+                        showBlinkSegment.shift();
+                        if (lastBlinkSegment != null) {
+                            lastBlinkSegment.style.backgroundColor = "black";   
+                        }
+
+                        if (showBlinkSegment.length === 0) {
+                            showBlinkSegment = [12, 27, 39, 54, 62, 80, 105, 120];
+                        }
                     }
+                }
+                if (settings_data[3].checked && settings_data[3].disabled === false && (Math.ceil(showBlinkSegment[0] / 10) === Math.ceil(blinkCount / 10))) {
+                    let segmentID = (showBlinkSegment[0] - 1) * 2 % 20;
+                    segmentsList[segmentID].style.backgroundColor = "#36c600";
+                    lastBlinkSegment = segmentsList[segmentID];
                 }
                 
                 if (choosedGhost[0] === "None") {
@@ -66,8 +82,12 @@ function updateArrowPosition() {
                         if ([12, 27, 39, 54, 62, 80, 105, 120].includes(blinkCount) && settings_data[3].checked && settings_data[3].disabled === false) {
                             changeGhostSRC = document.querySelector(`img[alt="${ghostGender[ghostChangeID]}"]`).src
                             square.style.backgroundImage = `url('${changeGhostSRC}')`;;
+                            if (choosedGhost[1] === changeGhostSRC) {
+                                square.style.transform = 'rotate(180deg)';
+                            }
                         } else {
                             square.style.backgroundImage = `url('${choosedGhost[1]}')`;
+                            square.style.transform = 'rotate(0deg)';
                         }
                         square.style.backgroundSize = "contain";
                         square.style.backgroundRepeat = "no-repeat";
