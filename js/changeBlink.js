@@ -39,5 +39,6 @@ applyButtonBlink.forEach(but => {
         }
 
         blinkTypeText.textContent = `Тип мерцаний: ${choosedGhostBlink}`;
+        segmentsList = document.querySelectorAll(".segment");
     });
 });

@@ -5,7 +5,7 @@ let ghostGender = null;
 let ghostChangeID = -1;
 let showBlinkSegment = [12, 27, 39, 54, 62, 80, 105, 120];
 let lastBlinkSegment = null;
-const segmentsList = document.querySelectorAll(".segment");
+let segmentsList = document.querySelectorAll(".segment");
 
 // Расчет общей продолжительности анимации
 let animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + lengthRatio, 0).toFixed(2);
@@ -42,7 +42,7 @@ function updateArrowPosition() {
                         }
                         showBlinkSegment.shift();
                         if (lastBlinkSegment != null) {
-                            lastBlinkSegment.style.backgroundColor = "black";   
+                            lastBlinkSegment.style.backgroundColor = "black";
                         }
 
                         if (showBlinkSegment.length === 0) {
