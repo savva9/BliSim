@@ -46,7 +46,6 @@ restartButton.addEventListener("click", async () => {
 
     blinkCount = 0;
     lastColor = "white";
-    ghostGender = null;
     ghostChangeID = -1;
     showBlinkSegment = [12, 27, 39, 54, 62, 80, 105, 120];
     lastBlinkSegment = null;
