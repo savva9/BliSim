@@ -22,6 +22,8 @@ function updateArrowPosition() {
     document.querySelectorAll(".segment").forEach(segment => {
         const segmentWidth = segment.offsetWidth + 0.5;
 
+        // console.log(blinkCount, ghostChangeID, showBlinkSegment, lastBlinkSegment, segmentsList)
+
         if (arrowPosition >= accumulatedWidth && arrowPosition <= accumulatedWidth + segmentWidth) {
             currentColor = segment.style.backgroundColor;
 

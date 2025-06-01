@@ -40,8 +40,10 @@ restartButton.addEventListener("click", async () => {
     arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
     arrow.style.animationPlayState = "running";
 
-    lastBlinkSegment.style.backgroundColor = "black";
- 
+    if (lastBlinkSegment) {
+        lastBlinkSegment.style.backgroundColor = "black";
+    }
+
     blinkCount = 0;
     lastColor = "white";
     ghostGender = null;
