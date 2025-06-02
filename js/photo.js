@@ -12,7 +12,7 @@ let canClick = false;
 // Обработчик клика по телу страницы
 clickers.forEach(clicker => {
     clicker.addEventListener("mousedown", () => {
-        if (square.style.backgroundColor === "black" && !isPaused && canClick) {
+        if ((square.style.backgroundColor === "black" || square.style.backgroundColor === "white") && !isPaused && canClick) {
             photos++;
             combo++;
             square.style.backgroundColor = "white";

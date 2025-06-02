@@ -38,5 +38,16 @@ restartButton.addEventListener("click", async () => {
     }
 
     arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
-    arrow.style.animationPlayState = 'running';
+    arrow.style.animationPlayState = "running";
+
+    if (lastBlinkSegment) {
+        lastBlinkSegment.style.backgroundColor = "black";
+    }
+
+    blinkCount = 0;
+    lastColor = "white";
+    ghostChangeID = -1;
+    showBlinkSegment = [12, 27, 39, 54, 62, 80, 105, 120];
+    lastBlinkSegment = null;
+    segmentsList = document.querySelectorAll(".segment");
 });
