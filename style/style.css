@@ -1,483 +1,482 @@
 /* Основные стили для тела страницы */
 body {
-    font-family: "Shantell Sans", serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    background-color: #4f5258;
+    font-family: "Shantell Sans", serif; /* Шрифт для текста */
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем отступы */
+    display: flex; /* Используем flexbox для размещения элементов */
+    justify-content: center; /* Центрируем элементы по горизонтали */
+    align-items: flex-start; /* Выравниваем элементы по вертикали сверху */
+    height: 100vh; /* Высота страницы на весь экран */
+    background-color: #4f5258; /* Цвет фона */
 }
 
 /* Скрытие элементов */
 .hidden {
-    visibility: hidden;
+    visibility: hidden; /* Скрывает элемент, но сохраняет его место в разметке */
 }
 
 /* Полное скрытие */
 .fullHidden {
-    display: none !important;
+    display: none !important; /* Скрывает элемент */
 }
 
 /* Стилизация полосы (#stripe) */
 #stripe {
-    display: flex;
-    height: 50px;
-    width: calc(100% - 40px);
-    position: relative;
+    display: flex; /* Используем flexbox для расположения сегментов */
+    height: 50px; /* Высота полосы */
+    width: calc(100% - 40px); /* Ширина полосы с учетом отступов */
+    position: relative; /* Позиционирование относительно родителя */
     top: 0;
-    margin: 20px;
-    box-shadow: 0 0 0 6px #1e1f22;
-    border-radius: 2px;
+    margin: 20px; /* Отступы от краев */
+    box-shadow: 0 0 0 6px #1e1f22; /* Обводка полосы */
+    border-radius: 2px; /* Скругление углов */
 }
 
+/* Сегменты внутри полосы */
 .segment {
-    height: 100%;
-    position: relative;
-    cursor: pointer;
+    height: 100%; /* Высота сегмента */
+    position: relative; /* Позиционирование относительно родителя */
+    cursor: pointer; /* Указатель для интерактивности */
 }
 
 /* Стиль для всплывающих подсказок (tooltip) */
 .tooltip {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    display: none;
-    font-size: 18px;
-    white-space: nowrap;
-    text-align: center;
+    position: absolute; /* Абсолютное позиционирование */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Центрирование по оси X */
+    background-color: #333; /* Цвет фона */
+    color: white; /* Цвет текста */
+    padding: 10px; /* Отступы внутри подсказки */
+    border-radius: 5px; /* Скругленные углы */
+    display: none; /* Изначально скрыта */
+    font-size: 18px; /* Размер текста */
+    white-space: nowrap; /* Текст не будет переноситься */
+    text-align: center; /* Выравнивание текста по центру */
 }
 
 /* Стиль для стрелочки в подсказке */
 .arrow {
     position: absolute;
-    top: 98%;
-    left: -5px;
-    width: 10px;
-    height: 10px;
-    scale: 200%;
-    background-color: #5865f2;
-    border-radius: 1px;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-    transform: translateY(-50%);
-    z-index: 10 !important;
+    top: 98%; /* Позиция стрелки */
+    left: -5px; /* Немного сдвигаем влево */
+    width: 10px; /* Размер стрелки */
+    height: 10px; /* Размер стрелки */
+    scale: 200%; /* Увеличиваем стрелку */
+    background-color: #5865f2; /* Цвет стрелки */
+    border-radius: 1px; /* Скругление углов стрелки */
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%); /* Формируем треугольник */
+    transform: translateY(-50%); /* Выравниваем по вертикали */
+    z-index: 10 !important; /* Поверх остальных элементов */
 }
 
 /* Анимация для стрелочки */
 @keyframes moveArrow {
     0% {
-        left: -5px;
+        left: -5px; /* Начальная позиция */
     }
     100% {
-        left: calc(100% - 0px);
+        left: calc(100% - 0px); /* Конечная позиция стрелки */
     }
 }
 
 /* Стиль для надписи "Made by" */
 .made-by {
-    position: fixed;
-    bottom: 0px;
-    left: 10px;
-    font-size: 16px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
+    position: fixed; /* Фиксированное расположение */
+    bottom: 0px; /* Отступ от нижнего края */
+    left: 10px; /* Отступ от левого края */
+    font-size: 16px; /* Размер шрифта */
+    color: white; /* Цвет текста */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    padding: 5px 10px; /* Отступы внутри */
+    border-radius: 5px; /* Скругление углов */
 }
 
 /* Стиль для надписи "timer" */
 .timer {
-    position: fixed;
-    top: 120px;
-    left: 10px;
-    font-size: 32px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: 95px;
+    position: fixed; /* Фиксированное расположение */
+    top: 120px; /* Отступ от нижнего края */
+    left: 10px; /* Отступ от левого края */
+    font-size: 32px; /* Размер шрифта */
+    color: white; /* Цвет текста */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    padding: 5px 10px; /* Отступы внутри */
+    border-radius: 5px; /* Скругление углов */
+    width: 95px; /* Фиксированная ширина */
 }
 
+/* Стиль для квадратов с фоном */
 .square {
-    width: 150px;
-    height: 150px;
-    background-color: none;
-    margin: 20px auto;
-    background-size: cover;
-    background-position: center;
-    scale: 300%;
+    width: 150px; /* Ширина квадрата */
+    height: 150px; /* Высота квадрата */
+    background-color: none; /* Без фона */
+    margin: 20px auto; /* Центрируем элемент */
+    background-size: cover; /* Покрытие фона */
+    background-position: center; /* Центрируем фон */
+    scale: 300%; /* Увеличиваем квадрат */
 }
 
 /* Стили для .ghost (призрак) */
 .ghost {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute; /* Абсолютное позиционирование */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Точное центрирование */
 }
 
+/* Стиль для инпутов */
 input {
-    font-family: "Shantell Sans", serif;
-    padding: 6px 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #323235;
-    color: white;
-    margin: 5px;
-    scale: 150%;
-    transition: opacity 0.3s, background-color 0.3s;
+    font-family: "Shantell Sans", serif; /* Шрифт для инпута */
+    padding: 6px 12px; /* Отступы внутри */
+    font-size: 16px; /* Размер шрифта */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    background-color: #323235; /* Цвет фона */
+    color: white; /* Цвет текста */
+    margin: 5px; /* Отступы вокруг */
+    scale: 150%; /* Увеличиваем инпут */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
 }
 
+/* Стиль при наведении на инпут */
 input:hover {
-    background-color: #28282b;
+    background-color: #28282b; /* Темнее фон при наведении */
 }
 
+/* Центрирование кнопок */
 .buttons {
-    text-align: center;
-    padding-top: 10px;
+    text-align: center; /* Центрируем кнопки */
+    padding-top: 10px; /* Отступ сверху */
 }
 
+/* Стилизация фото */
 .combo,
 .photo {
-    text-align: center;
-    color: white;
-    background-color: #43464b;
-    border-radius: 3px;
-    padding: 5px 15px;
-    margin: 0 10px;
+    text-align: center; /* Центрируем текст */
+    color: white; /* Цвет текста */
+    background-color: #43464b; /* Цвет фона */
+    border-radius: 3px; /* Скругление углов */
+    padding: 5px 15px; /* Отступы внутри */
+    margin: 0 10px; /* Отступы слева и справа */
 }
 
+/* Текст внутри фото */
 .text-in-photo {
-    text-align: center;
+    text-align: center; /* Центрируем текст */
     display: flex;
-    margin-bottom: 10px;
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%) scale(2.5);
+    margin-bottom: 10px; /* Отступ снизу */
+    position: fixed; /* Фиксированное расположение */
+    bottom: 40px; /* Отступ снизу */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%) scale(2.5); /* Сдвигаем и увеличиваем размер */
 }
 
+/* Утилиты */
 .utilites {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-    align-items: center;
+    position: fixed; /* Фиксированное расположение */
+    bottom: 25px; /* Отступ снизу */
+    right: 25px; /* Отступ справа */
+    display: flex; /* Включаем Flexbox */
+    gap: 10px; /* Расстояние между иконками */
+    flex-direction: row; /* Горизонтальное выравнивание */
+    align-items: center; /* Выравнивание по вертикали */
 }
 
+/* Утилиты слева */
 .left-utilites {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-    align-items: center;
+    position: fixed; /* Фиксированное расположение */
+    bottom: 25px; /* Отступ снизу */
+    left: 25px; /* Отступ справа */
+    display: flex; /* Включаем Flexbox */
+    gap: 10px; /* Расстояние между иконками */
+    flex-direction: row; /* Горизонтальное выравнивание */
+    align-items: center; /* Выравнивание по вертикали */
 }
 
+/* FAQ */
 .FAQ-button {
-    width: 40px;
-    height: 40px;
-    opacity: 0.9;
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: opacity 0.3s, background-color 0.3s;
-    border-radius: 5px;
-    transform: translateX(0) scale(1.4);
-    margin-left: -6px;
-    margin-right: 12px;
-    margin-bottom: 40px;
+    width: 40px; /* Размер иконки */
+    height: 40px; /* Размер иконки */
+    opacity: 0.9; /* Прозрачность */
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
+    border-radius: 5px; /* Скругленные углы */
+    transform: translateX(0) scale(1.4); /* Сдвигаем и увеличиваем размер */
+    margin-left: -6px; /* Отступ */
+    margin-right: 12px; /* Отступ */
+    margin-bottom: 40px; /* Отступ */
 }
 
 /* Стиль для выбора призрака */
 .FAQ {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 101 !important;
-    animation: fadeIn 0.5s ease-out;
-    width: 55%;
-    height: 48%;
-    overflow: auto;
-    color: white;
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Фиксированное расположение */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Точное центрирование */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    padding: 20px; /* Отступы внутри */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень */
+    z-index: 101 !important; /* На переднем плане */
+    animation: fadeIn 0.5s ease-out; /* Анимация */
+    width: 55%; /* Ширина блока */
+    height: 45%; /* Высота блока */
+    overflow: auto; /* Скроллинг при необходимости */
+    color: white; /* Цвет текста */
 }
 
+/* Анимация появления для выбора призрака */
 @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+        opacity: 0; /* Начальная прозрачность */
+        transform: translate(-50%, -60%); /* Начальная позиция */
     }
     to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+        opacity: 1; /* Конечная прозрачность */
+        transform: translate(-50%, -50%); /* Конечная позиция */
     }
 }
 
+/* Стили для иконки настроек */
 .settings,
 .restart-button {
-    width: 40px;
-    height: 40px;
-    opacity: 0.7;
-    transition: opacity 0.3s, background-color 0.3s;
-    border-radius: 3px;
-    background-color: #414347;
-    transform: translateX(0) scale(1.5);
-    margin-left: 12px;
-    margin-right: 12px;
+    width: 40px; /* Размер иконки */
+    height: 40px; /* Размер иконки */
+    opacity: 0.7; /* Прозрачность */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
+    border-radius: 3px; /* Скругленные углы */
+    background-color: #414347; /* Цвет фона */
+    transform: translateX(0) scale(1.5); /* Сдвигаем и увеличиваем размер */
+    margin-left: 12px; /* Отступ */
+    margin-right: 12px; /* Отступ */
 }
 
+
+/* Стили для иконки при наведении */
 .settings:hover,
 .restart-button:hover,
 .FAQ-button:hover {
-    cursor: pointer;
-    opacity: 1;
+    cursor: pointer; /* Указатель при наведении */
+    opacity: 1; /* Полная непрозрачность */
 }
 
+/* Стили для меню настроек */
 .settings-menu {
-    position: fixed;
-    bottom: 140px;
-    right: 50px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    display: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 100 !important;
-    scale: 125%;
+    position: fixed; /* Фиксированное расположение */
+    bottom: 140px; /* Отступ снизу */
+    right: 50px; /* Отступ справа */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    color: white; /* Цвет текста */
+    padding: 15px; /* Отступы внутри */
+    border-radius: 8px; /* Скругленные углы */
+    display: none; /* Изначально скрыто */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень */
+    z-index: 100 !important; /* На переднем плане */
+    scale: 125%; /* Увеличиваем размер */
 }
 
+/* Стили для поля ввода custom-url */
 .custom-url {
-    font-family: "Shantell Sans", serif;
-    padding: 6px 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: text;
-    background-color: #323235;
-    color: white;
-    margin: 5px;
-    scale: 150%;
-    display: block;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 35px;
-    transition: opacity 0.3s, background-color 0.3s;
+    font-family: "Shantell Sans", serif; /* Шрифт для текста */
+    padding: 6px 12px; /* Отступы внутри */
+    font-size: 16px; /* Размер шрифта */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: text; /* Курсор при фокусе */
+    background-color: #323235; /* Цвет фона */
+    color: white; /* Цвет текста */
+    margin: 5px; /* Отступы вокруг */
+    scale: 150%; /* Увеличиваем инпут */
+    display: block; /* Блочный элемент */
+    width: 80%; /* Ширина поля */
+    max-width: 500px; /* Максимальная ширина */
+    text-align: center; /* Центрируем текст внутри поля */
+    margin-left: auto; /* Центрируем по горизонтали */
+    margin-right: auto; /* Центрируем по горизонтали */
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 35px; /* Отступ снизу */
+    transition: opacity 0.3s, background-color 0.3s; /* Плавные переходы */
 }
 
+/* Стили для элементов меню настроек */
 .setting-item {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Отступ снизу */
 }
 
+/* Стили для кнопок в меню */
 .setting-item input {
-    cursor: pointer;
+    cursor: pointer; /* Указатель при наведении */
 }
 
+/* Стиль для кнопки старт */
 .start-button {
-    font-size: 25px;
-    text-align: center;
-    color: white;
-    border-radius: 3px;
-    padding: 5px 15px;
-    display: inline-block;
-    position: fixed;
-    bottom: 50%;
-    left: 50%;
-    transform: translateX(-37%) scale(2);
+    font-size: 25px; /* Размер шрифта */
+    text-align: center; /* Центрируем текст */
+    color: white; /* Цвет текста */
+    border-radius: 3px; /* Скругленные углы */
+    padding: 5px 15px; /* Отступы внутри */
+    display: inline-block; /* Элемент будет только вокруг текста */
+    position: fixed; /* Фиксированное расположение */
+    bottom: 50%; /* Отступ снизу */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-37%) scale(2); /* Сдвигаем и увеличиваем размер */
 }
 
+/* Стиль для выбора призрака */
 .setting-choose-ghost {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 101 !important;
-    animation: fadeIn 0.5s ease-out;
-    width: 80%;
-    height: 45%;
-    overflow: auto;
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Фиксированное расположение */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Точное центрирование */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    padding: 20px; /* Отступы внутри */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень */
+    z-index: 101 !important; /* На переднем плане */
+    animation: fadeIn 0.5s ease-out; /* Анимация */
+    width: 80%; /* Ширина блока */
+    height: 45%; /* Высота блока */
+    overflow: auto; /* Скроллинг при необходимости */
 }
 
+/* Анимация появления для выбора призрака */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Начальная прозрачность */
+        transform: translate(-50%, -60%); /* Начальная позиция */
+    }
+    to {
+        opacity: 1; /* Конечная прозрачность */
+        transform: translate(-50%, -50%); /* Конечная позиция */
+    }
+}
+
+/* Стиль для картинки призрака */
 .setting-ghost {
-    max-width: 150%;
-    max-height: 150px;
-    width: auto;
-    height: auto;
-    margin-right: 10px;
+    max-width: 150%; /* Ограничиваем максимальную ширину */
+    max-height: 150px; /* Ограничиваем максимальную высоту */
+    width: auto; /* Автоматическая ширина для сохранения пропорций */
+    height: auto; /* Автоматическая высота */
+    margin-right: 10px; /* Отступ справа */
 }
 
-.selected-ghost-settings {
-    max-height: 200px !important;
-}
-
+/* Стиль для ряда с картинками призраков */
 .ghost-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    display: flex; /* Используем flexbox */
+    justify-content: space-between; /* Располагаем элементы по бокам */
+    margin-bottom: 10px; /* Отступ снизу */
 }
 
+/* Стиль для наложения */
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #00000080;
-    z-index: 100 !important;
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Фиксированное расположение */
+    top: 0; /* Отступ сверху */
+    left: 0; /* Отступ слева */
+    right: 0; /* Отступ справа */
+    bottom: 0; /* Отступ снизу */
+    background-color: #00000080; /* Полупрозрачный черный фон */
+    z-index: 100 !important; /* На переднем плане */
 }
 
+/* Стиль для выбранного элемента */
 .selected {
-    box-shadow: 0 0 30px #b9b9b980 !important;
-    background-color: #b9b9b980 !important;
-    border-radius: 10px !important;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease !important;
+    box-shadow: 0 0 30px #b9b9b980 !important; /* Тень */
+    background-color: #b9b9b980 !important; /* Цвет фона */
+    border-radius: 10px !important; /* Скругленные углы */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease !important; /* Плавные переходы */
 }
 
+/* Выделение при наведении */
 .setting-ghost:hover {
-    box-shadow: 0 0 30px #44444480;
-    background-color: #44444480;
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 30px #44444480; /* Тень */
+    background-color: #44444480; /* Цвет фона */
+    border-radius: 10px; /* Скругленные углы */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Плавные переходы */
 }
 
+/* Плавное исчезновение обводки */
 .setting-ghost {
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-    border-radius: 10px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+    border-radius: 10px; /* Скругление углов */
 }
 
+/* Стиль для кнопки выбора призрака */
 .setting-choose-ghost input[type="button"] {
-    width: 50%;
-    padding: 12px 20px;
-    background-color: #5865f2;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 35px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 50%; /* Ширина кнопки */
+    padding: 12px 20px; /* Отступы внутри */
+    background-color: #5865f2; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    font-size: 18px; /* Размер шрифта */
+    border: none; /* Без рамки */
+    border-radius: 15px; /* Скругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    transition: background-color 0.3s; /* Плавный переход */
+    margin-top: 35px; /* Отступ сверху */
+    display: block; /* Кнопка блочная */
+    margin-left: auto; /* Центрируем по горизонтали */
+    margin-right: auto; /* Центрируем по горизонтали */
 }
 
+/* Кнопка выбора призрака при недоступности */
 .setting-choose-ghost input[type="button"]:disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
+    background-color: #d3d3d3; /* Цвет кнопки при недоступности */
+    cursor: not-allowed; /* Курсор при недоступности */
 }
 
+/* Цвет кнопки при наведении */
 .setting-choose-ghost input[type="button"]:hover {
-    background-color: #4f56c3;
+    background-color: #4f56c3; /* Цвет при наведении */
 }
 
-.setting-item input[type="button"].choose-ghost,
-input[type="button"].choose-ghost-blink{
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #5865f2;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 5px;
-    scale: 105%;
+/* Стиль для кнопки в меню настроек */
+.setting-item input[type="button"].choose-ghost {
+    width: 100%; /* Ширина кнопки */
+    padding: 12px 20px; /* Отступы внутри */
+    background-color: #5865f2; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    font-size: 18px; /* Размер текста */
+    border: none; /* Без рамки */
+    border-radius: 15px; /* Скругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    transition: background-color 0.3s; /* Плавный переход */
+    margin-top: 5px; /* Отступ сверху */
+    scale: 105%; /* Увеличиваем кнопку */
 }
 
-.setting-choose-ghost-blink {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 101 !important;
-    animation: fadeIn 0.5s ease-out;
-    width: 35%;
-    height: 45%;
-    overflow: auto;
-}
-
-.blink-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px;
-    justify-items: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.applyButton-blink {
-    width: 120px;
-    padding: 8px 12px;
-    transform: scale(1.45);
-    cursor: pointer;
-}
-
-.blink-type {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-        margin-top: 0px;
-}
-
-
+/* Стиль для контейнера с призраками */
 .ghost-conteiner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+    display: flex; /* Используем flexbox */
+    flex-direction: column; /* Вертикальное расположение */
+    align-items: center; /* Центрируем по горизонтали */
+    justify-content: center; /* Центрируем по вертикали */
+    margin-bottom: 10px; /* Отступ снизу */
 }
 
+/* Стиль для выбранного призрака */
 .selected-ghost {
-    max-width: 150px;
-    height: auto;
+    max-width: 200px; /* Фиксированная ширина */
+    height: auto; /* Автоматическая высота */
 }
 
+/* Растягивание .clicker на всю страницу */
 .BGClicker {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 0; /* Чтобы элемент был на заднем плане */
 }
 
+/* Все элементы кроме .clicker */
 * {
-    z-index: 1 !important;
+    z-index: 1 !important; /* Устанавливаем z-index: 1 для всех элементов */
 }
 
+/* Исключение .clicker из общего правила */
 .BGClicker {
-    z-index: 0 !important;
+    z-index: 0 !important; /* Убедимся, что .clicker остается на заднем плане */
 }

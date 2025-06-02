@@ -7,7 +7,6 @@ const settingsMenu = document.querySelector(".settings-menu");
 settings_data[0].checked = true;
 settings_data[1].checked = true;
 settings_data[2].checked = false;
-settings_data[3].checked = false;
 
 // Обработчик меню настроек
 settingsIcon.addEventListener("click", () => {

@@ -57,15 +57,7 @@ applyButton.addEventListener('click', () => {
         choosedGhost = [selectedGhost.alt, selectedGhost.src];
         if (choosedGhost[0] === "Custom") {
             choosedGhost[1] = customUrlInput.value;
-            ghostGender = null;
-        } else if (["Butcher", "Fisherman", "Greybeard", "Sofia", "Nerd", "Skeleton", "Brute"].includes(choosedGhost[0])) {
-            ghostGender = ["Butcher", "Fisherman", "Greybeard", "Sofia", "Nerd", "Skeleton", "Brute"];
-        } else if (["Creepy Girl", "Old Crone", "Patient 07", "Argyro"].includes(choosedGhost[0])) {
-            ghostGender = ["Creepy Girl", "Old Crone", "Patient 07", "Argyro"];
-        } else {
-            ghostGender = null;
         }
-
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
     }
