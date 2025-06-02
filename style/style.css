@@ -211,7 +211,7 @@ input:hover {
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
     width: 55%;
-    height: 45%;
+    height: 48%;
     overflow: auto;
     color: white;
 }
