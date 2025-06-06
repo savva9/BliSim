@@ -22,6 +22,11 @@ clickers.forEach(clicker => {
         } else {
             combo = 0;
         }
+
+        if (photoAudio && !isPaused && canClick) {
+            photoAudio.play();
+        }
+
         photosText.textContent = `Фото: ${photos}`;
         comboText.textContent = `Комбо: ${combo}`;
     });

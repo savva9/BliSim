@@ -395,18 +395,25 @@ input:hover {
 }
 
 .setting-item input[type="button"].choose-ghost,
-input[type="button"].choose-ghost-blink{
+input[type="button"].choose-ghost-blink,
+.choose-photo-audio {
     width: 100%;
-    padding: 12px 20px;
+    padding: 10px 12px;
     background-color: #5865f2;
     color: white;
     font-size: 18px;
     border: none;
-    border-radius: 15px;
+    border-radius: 11px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 5px;
     scale: 105%;
+}
+
+.choose-photo-audio:hover,
+.choose-ghost-blink:hover,
+.choose-ghost:hover {
+    background-color: #454fbd !important;
 }
 
 .setting-choose-ghost-blink {
@@ -424,6 +431,44 @@ input[type="button"].choose-ghost-blink{
     width: 35%;
     height: 45%;
     overflow: auto;
+}
+
+.setting-choose-photo-audio {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 101 !important;
+    animation: fadeIn 0.5s ease-out;
+    width: 35%;
+    height: 60%;
+    overflow: auto;
+}
+
+.setting-photo {
+    max-height: 250px;
+}
+
+.setting-photo:hover {
+    box-shadow: 0 0 30px #44444480;
+    background-color: #44444480;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .blink-grid {
