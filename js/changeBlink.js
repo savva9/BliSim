@@ -10,9 +10,9 @@ document.querySelector(".choose-ghost-blink").addEventListener("click", () => {
 
 // Слушать кнопку мерцаний призрака
 applyButtonBlink.forEach(but => {
-    but.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        ghostSettingsBlink.style.display = 'none';
+    but.addEventListener("click", () => {
+        overlay.style.display = "none";
+        ghostSettingsBlink.style.display = "none";
 
         let choosedGhostBlink = but.value
 

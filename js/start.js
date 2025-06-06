@@ -21,7 +21,7 @@ startButton.addEventListener("click", async () => {
 
 // Обработчик кнопки рестарта
 restartButton.addEventListener("click", async () => {
-    arrow.style.animation = 'none';
+    arrow.style.animation = "none";
     arrow.offsetHeight;
     
     resetTimer();

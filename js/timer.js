@@ -7,9 +7,9 @@ let intervalTimer;
 // Таймер
 function formatTime(ms) {
     const totalSeconds = Math.floor(ms / 1000);
-    const minutes = String(Math.floor(totalSeconds / 60)).padStart(1, '0');
-    const seconds = String(totalSeconds % 60).padStart(2, '0');
-    const milliseconds = String(Math.floor((ms % 1000) / 100)).padStart(1, '0');
+    const minutes = String(Math.floor(totalSeconds / 60)).padStart(1, "0");
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    const milliseconds = String(Math.floor((ms % 1000) / 100)).padStart(1, "0");
     return `${minutes}:${seconds}.${milliseconds}`;
 }
 

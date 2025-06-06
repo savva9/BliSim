@@ -20,7 +20,7 @@ function createLine() {
         const tooltip = document.createElement("div");
         tooltip.classList.add("tooltip");
         tooltip.style.bottom = description ? "-90px" : "-70px";
-        tooltip.innerHTML = fullDescription.join('<br>');
+        tooltip.innerHTML = fullDescription.join("<br>");
 
         segment.appendChild(tooltip);
 

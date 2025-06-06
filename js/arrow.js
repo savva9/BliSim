@@ -68,28 +68,28 @@ function updateArrowPosition() {
                     }
                 } else {
                     if (choosedGhost[0] == "Custom") {
-                        square.style.backgroundImage = `url('${choosedGhost[1]}')`;
+                        square.style.backgroundImage = `url("${choosedGhost[1]}")`;
                         square.style.backgroundSize = "contain";
                         square.style.backgroundRepeat = "no-repeat";
                         square.style.backgroundPosition = "center";
                         square.style.overflow = "visible";
                         
                         if ([12, 27, 39, 54, 62, 80, 105, 120].includes(blinkCount) && settings_data[3].checked && settings_data[3].disabled === false) {
-                            square.style.transform = 'rotate(180deg)';
+                            square.style.transform = "rotate(180deg)";
                         } else {
-                            square.style.transform = 'rotate(0deg)';
+                            square.style.transform = "rotate(0deg)";
                         }
 
                     } else {
                         if ([12, 27, 39, 54, 62, 80, 105, 120].includes(blinkCount) && settings_data[3].checked && settings_data[3].disabled === false) {
                             changeGhostSRC = document.querySelector(`img[alt="${ghostGender[ghostChangeID]}"]`).src
-                            square.style.backgroundImage = `url('${changeGhostSRC}')`;;
+                            square.style.backgroundImage = `url("${changeGhostSRC}")`;;
                             if (choosedGhost[1] === changeGhostSRC) {
-                                square.style.transform = 'rotate(180deg)';
+                                square.style.transform = "rotate(180deg)";
                             }
                         } else {
-                            square.style.backgroundImage = `url('${choosedGhost[1]}')`;
-                            square.style.transform = 'rotate(0deg)';
+                            square.style.backgroundImage = `url("${choosedGhost[1]}")`;
+                            square.style.transform = "rotate(0deg)";
                         }
                         square.style.backgroundSize = "contain";
                         square.style.backgroundRepeat = "no-repeat";
