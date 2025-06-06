@@ -1,10 +1,11 @@
 const ghostSettingsAudio = document.querySelector(".setting-choose-photo-audio");
 const applyButtonAudio = document.querySelectorAll(".setting-photo");
 let photoAudio = null;
+let choosedPhotoAudio = null;
 const photoAudioVolume = {
-    "T1": 0.35,
-    "T2": 0.9,
-    "T3": 0.3,
+    "T1": [0.35, 3],
+    "T2": [0.9,  2],
+    "T3": [0.3,  1],
 }
 
 // Обработчик выбора призрака
@@ -19,13 +20,13 @@ applyButtonAudio.forEach(photoAudioObj => {
         overlay.style.display = "none";
         ghostSettingsAudio.style.display = "none";
 
-        let choosedPhotoAudio = photoAudioObj.alt;
+        choosedPhotoAudio = photoAudioObj.alt;
 
         if (choosedPhotoAudio === "None") {
             photoAudio = null;
         } else {
             photoAudio = new Audio(`audio/${choosedPhotoAudio}.wav`);
-            photoAudio.volume = photoAudioVolume[choosedPhotoAudio];
+            photoAudio.volume = photoAudioVolume[choosedPhotoAudio][0];
         }
 
         const lastSelected = document.querySelector(".setting-photo.selected");
