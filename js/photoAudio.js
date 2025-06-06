@@ -34,5 +34,7 @@ applyButtonAudio.forEach(photoAudioObj => {
             lastSelected.classList.remove("selected");
         }
         photoAudioObj.classList.add("selected");
+        
+        isSleep = false;
     });
 });
