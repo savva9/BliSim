@@ -70,3 +70,5 @@ applyButton.addEventListener("click", () => {
         canClick = true;
     }
 });
+
+document.querySelector(".setting-ghost[alt=None]").click();
