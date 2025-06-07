@@ -26,14 +26,17 @@ clickers.forEach(clicker => {
 
         photosText.textContent = `Фото: ${photos}`;
         comboText.textContent = `Комбо: ${combo}`;
-        
-        if (photoAudio && !isPaused && canClick && !isSleep) {
-            photoAudio.play();
-            isSleep = true;
-            setTimeout(() => {
-                isSleep = false;
-                console.log(photoAudioVolume[choosedPhotoAudio][1])
-            }, photoAudioVolume[choosedPhotoAudio][1] * 1000)
+
+        if (photoAudio && !isPaused && canClick && !isSleep && (photoAudioSettings[0].checked || photoAudioSettings[1].checked)) {
+            if (photoAudioSettings[0].checked) {
+                photoAudio.play();
+            }
+            if (photoAudioSettings[1].checked) {
+                isSleep = true;
+                setTimeout(() => {
+                    isSleep = false;
+                }, photoAudioVolume[choosedPhotoAudio][1] * 1000)
+            }
         }
     });
 })
