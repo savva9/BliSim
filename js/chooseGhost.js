@@ -66,6 +66,10 @@ applyButton.addEventListener("click", () => {
             ghostGender = null;
         }
 
+        if (choosedGhost[0] != "Custom") {
+            customUrlInput.value = "";
+        }
+
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
     }
