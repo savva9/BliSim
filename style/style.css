@@ -446,7 +446,7 @@ input[type="button"]:disabled {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 575px;
+    width: 625px;
     height: 450px;
     overflow: auto;
 }
