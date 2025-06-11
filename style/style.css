@@ -319,7 +319,7 @@ input:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 1400px;
+    width: 1500px;
     height: 510px;
     overflow: auto;
 }
@@ -463,8 +463,8 @@ input[type="button"]:disabled {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 823px;
-    height: 400px;
+    width: 820px;
+    height: 380px;
     overflow: auto;
 }
 
