@@ -56,15 +56,14 @@ body {
 /* Стиль для стрелочки в подсказке */
 .arrow {
     position: absolute;
-    top: 98%;
+    top: 49px;
     left: -5px;
     width: 10px;
     height: 10px;
-    scale: 200%;
+    transform: scale(2);
     background-color: #5865f2;
     border-radius: 1px;
     clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-    transform: translateY(-50%);
     z-index: 10 !important;
 }
 
@@ -110,7 +109,7 @@ body {
     margin: 20px auto;
     background-size: cover;
     background-position: center;
-    scale: 300%;
+    transform: scale(3) !important;
 }
 
 /* Стили для .ghost (призрак) */
@@ -131,7 +130,7 @@ input {
     background-color: #323235;
     color: white;
     margin: 5px;
-    scale: 150%;
+    transform: scale(1.5);
     transition: opacity 0.3s, background-color 0.3s;
 }
 
@@ -210,8 +209,8 @@ input:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 55%;
-    height: 48%;
+    width: 1000px;
+    height: 500px;
     overflow: auto;
     color: white;
 }
@@ -258,7 +257,7 @@ input:hover {
     display: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 100 !important;
-    scale: 125%;
+    transform: scale(1.25);
 }
 
 .custom-url {
@@ -271,9 +270,9 @@ input:hover {
     background-color: #323235;
     color: white;
     margin: 5px;
-    scale: 150%;
+    transform: scale(1.5);
     display: block;
-    width: 80%;
+    width: 400px;
     max-width: 500px;
     text-align: center;
     margin-left: auto;
@@ -305,7 +304,7 @@ input:hover {
     position: fixed;
     bottom: 50%;
     left: 50%;
-    transform: translateX(-37%) scale(2);
+    transform: translateX(-37%) scale(3);
 }
 
 .setting-choose-ghost {
@@ -320,14 +319,14 @@ input:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 80%;
-    height: 45%;
+    width: 1400px;
+    height: 510px;
     overflow: auto;
 }
 
 .setting-ghost {
     max-width: 150%;
-    max-height: 150px;
+    max-height: 200px;
     width: auto;
     height: auto;
     margin-right: 10px;
@@ -350,20 +349,20 @@ input:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #00000080;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 100 !important;
 }
 
 .selected {
-    box-shadow: 0 0 30px #b9b9b980 !important;
-    background-color: #b9b9b980 !important;
+    box-shadow: 0 0 30px rgba(185, 185, 185, 0.5) !important;
+    background-color: rgba(185, 185, 185, 0.5) !important;
     border-radius: 10px !important;
     transition: box-shadow 0.3s ease, background-color 0.3s ease !important;
 }
 
 .setting-ghost:hover {
-    box-shadow: 0 0 30px #44444480;
-    background-color: #44444480;
+    box-shadow: 0 0 30px rgba(68, 68, 68, 0.5);
+    background-color: rgba(68, 68, 68, 0.5);
     border-radius: 10px;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
@@ -374,7 +373,7 @@ input:hover {
 }
 
 .setting-choose-ghost input[type="button"] {
-    width: 50%;
+    width: 300px;
     padding: 12px 20px;
     background-color: #5865f2;
     color: white;
@@ -412,7 +411,7 @@ input[type="button"].choose-ghost-blink,
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 5px;
-    scale: 105%;
+    transform: scale(1.05);
 }
 
 input[type="button"]:disabled {
@@ -428,9 +427,11 @@ input[type="button"]:disabled {
 }
 
 .applyButtonAudio {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
+    width: 200px;
+    scale: 1.35;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
 }
 
 .setting-choose-ghost-blink {
@@ -445,8 +446,8 @@ input[type="button"]:disabled {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 35%;
-    height: 45%;
+    width: 575px;
+    height: 450px;
     overflow: auto;
 }
 
@@ -462,29 +463,24 @@ input[type="button"]:disabled {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
-    width: 35%;
-    height: 75%;
+    width: 823px;
+    height: 400px;
     overflow: auto;
 }
 
 .setting-photo {
-    max-height: 250px;
+    max-height: 200px;
+    margin-bottom: 20px;
 }
 
 .setting-photo:hover {
-    box-shadow: 0 0 30px #44444480;
-    background-color: #44444480;
+    box-shadow: 0 0 30px rgba(68, 68, 68, 0.5);
+    background-color: rgba(68, 68, 68, 0.5);
     border-radius: 10px;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .audio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    align-items: center;
-    height: 80%;
-    width: 100%;
     margin-bottom: -10px;
 }
 
@@ -494,16 +490,16 @@ input[type="button"]:disabled {
 }
 
 .setting-choose-photo-audio .setting-item label {
-    font-size: 1.5rem;
+    font-size: 24px;
     margin-bottom: 10px;
-    width: 87%;
+    width: 580px;
 }
 
 .setting-choose-photo-audio .setting-item input[type="checkbox"] {
     margin-left: 0;
-    transform: scale(1.5); 
+    transform: scale(2); 
     align-self: flex-start;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .blink-grid {
@@ -519,18 +515,17 @@ input[type="button"]:disabled {
 .applyButton-blink {
     width: 120px;
     padding: 8px 12px;
-    transform: scale(1.45);
+    transform: scale(2.2);
     cursor: pointer;
 }
 
 .blink-type {
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 5px;
-        margin-top: 0px;
+    margin-top: 0px;
 }
-
 
 .ghost-conteiner {
     display: flex;

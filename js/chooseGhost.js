@@ -22,11 +22,11 @@ document.querySelectorAll(".setting-ghost").forEach(ghost => {
         if (ghost.alt != "Custom") {
             applyButton.disabled = false;
             customUrlInput.classList.add("fullHidden");
-            ghostSettings.style.height = "45%";
+            ghostSettings.style.height = "510px";
         } else {
             applyButton.disabled = true;
             customUrlInput.classList.remove("fullHidden");
-            ghostSettings.style.height = "50%";
+            ghostSettings.style.height = "560px";
         }
     });
     if (ghost.alt === "Custom") {
