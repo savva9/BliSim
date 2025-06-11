@@ -415,6 +415,11 @@ input[type="button"].choose-ghost-blink,
     scale: 105%;
 }
 
+input[type="button"]:disabled {
+    cursor: not-allowed;
+    background-color: #232325;
+}
+
 .choose-photo-audio:hover,
 .choose-ghost-blink:hover,
 .choose-ghost:hover,
