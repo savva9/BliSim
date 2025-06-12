@@ -248,7 +248,7 @@ input:hover {
 
 .settings-menu {
     position: fixed;
-    bottom: 140px;
+    bottom: 150px;
     right: 50px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
