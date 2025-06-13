@@ -7,6 +7,7 @@
 
     <!-- Название страницы -->
     <title>BliSim</title>
+   <link rel="icon" href="img/avatar.png" type="image/png">
 
     <!-- Подключение стилей -->
     <link rel="stylesheet" href="style/style.css">
@@ -74,6 +75,9 @@
             <h3 style="color: #2bb32b;">- Можно ли добавить своё изображение?</h3>
             <p>Да, выбрать custom и вставить ссылку из интернета (можно загрузить, например, в Дискорд и скопировать ссылку).</p>
         </div>
+
+        <br>
+        Доцык - главный жора ❤️
      </div>
 
     <!-- Меню настроек -->
@@ -95,12 +99,22 @@
             <label for="setting3" title="Правильное отображения мерцаний в начале охоты">Добавить 1 секунду</label>
             <input type="checkbox" id="setting">
         </div>
+
+        <!-- Обакэ -->
+        <div class="setting-item">
+            <label for="setting4" title="Включить появление Обакэ">Смена облика Обакэ</label>
+            <input type="checkbox" id="setting">
+        </div>
         
         <!-- Настройка выбора призрака -->
         <div class="setting-item ghost-conteiner">
-            <input class="choose-ghost" type="button" value="Выбрать призрака">
-            <img src="img/Ghosts/None.png" alt="None" class="selected-ghost">
+            <input class="choose-photo-audio" type="button" value="Выбрать звук фотика">
+            <input class="choose-ghost-blink" type="button" value="Выбрать тип мерцания">
+            <input class="choose-ghost" type="button" value="Выбрать модель призрака">
+            <img src="img/Ghosts/None.png" alt="None" class="selected-ghost selected-ghost-settings">
         </div>
+
+        <p class="blink-type">Тип мерцаний: Обычный</p>
     </div>
 
     <!-- Блок выбора призрака -->
@@ -127,9 +141,42 @@
         </div>
  
         <!-- Кнопка подтверждения выбора призрака -->
-        <img src="" alt="" class="fullHidden test-img">
+        <img class="fullHidden test-img">
         <input type="text" name="custom-url" id="custom-url" class="custom-url fullHidden" placeholder="Вставьте ссылку">
         <input type="button" value="Применить" id="applyButton" disabled>
+    </div>
+
+    <!-- Выбор типа мерцаний -->
+    <div class="setting-choose-ghost-blink">
+        <div class="blink-grid">
+            <input class="applyButton-blink" type="button" value="Обычный">
+            <input class="applyButton-blink" type="button" value="Фантом">
+            <input class="applyButton-blink" type="button" value="Они" title="Они временно не доступен из-за технических ограничений" disabled>
+            <input class="applyButton-blink" type="button" value="Деоген">
+            <input class="applyButton-blink" type="button" value="1 сбитый">
+            <input class="applyButton-blink" type="button" value="2 сбитый">
+        </div>
+    </div>
+
+    <!-- Выбор типа фотика -->
+    <div class="setting-choose-photo-audio">
+        <div class="audio-grid">
+            <img src="img/Ghosts/None.png" alt="None" class="setting-photo selected">
+            <img src="img/Photos/T1.png" alt="T1" class="setting-photo">
+            <img src="img/Photos/T2.png" alt="T2" class="setting-photo">
+            <img src="img/Photos/T3.png" alt="T3" class="setting-photo">
+        </div>
+
+        <div class="setting-item">
+            <label>Включить воспроизведение звука фотографии</label>
+            <input type="checkbox" class="set-audio-setting" checked disabled>
+        </div>
+        <div class="setting-item">
+            <label>Включить задержку выбранного фотоаппарата</label>
+            <input type="checkbox" class="set-audio-setting" checked disabled>
+        </div>
+
+        <input type="button" value="Применить" class="applyButtonAudio">
     </div>
 
     <!-- Блок с информацией об авторстве -->
@@ -143,10 +190,12 @@
     <script src="js/timer.js"></script>
     <script src="js/FAQ.js"></script>
     <script src="js/chooseGhost.js"></script>
-    <script src="js/arrow.js"></script>
-    <script src="js/start.js"></script>
+    <script src="js/changeBlink.js"></script>
     <script src="js/photo.js"></script>
     <script src="js/timeline.js"></script>
+    <script src="js/arrow.js"></script>
+    <script src="js/photoAudio.js"></script>
+    <script src="js/start.js"></script>
     <script src="js/settings.js"></script>
 </body>
 </html>

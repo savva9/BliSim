@@ -1,32 +1,32 @@
 const ghostSettings = document.querySelector(".setting-choose-ghost");
 const customUrlInput = document.querySelector(".custom-url");
-const applyButton = document.getElementById('applyButton');
+const applyButton = document.getElementById("applyButton");
 
 let choosedGhost = ["None", ""];
 let selectedGhost = null;
 
 // Обработчик выбора призрака
 document.querySelector(".choose-ghost").addEventListener("click", () => {
-    overlay.style.display = 'block';
-    ghostSettings.style.display = 'block';
+    overlay.style.display = "block";
+    ghostSettings.style.display = "block";
 });
 
 // Обработчик кликов на изображения призраков
-document.querySelectorAll('.setting-ghost').forEach(ghost => {
-    ghost.addEventListener('click', () => {
+document.querySelectorAll(".setting-ghost").forEach(ghost => {
+    ghost.addEventListener("click", () => {
         if (selectedGhost) {
-            selectedGhost.classList.remove('selected');
+            selectedGhost.classList.remove("selected");
         }
-        ghost.classList.add('selected');
+        ghost.classList.add("selected");
         selectedGhost = ghost;
         if (ghost.alt != "Custom") {
             applyButton.disabled = false;
             customUrlInput.classList.add("fullHidden");
-            ghostSettings.style.height = "45%";
+            ghostSettings.style.height = "510px";
         } else {
             applyButton.disabled = true;
             customUrlInput.classList.remove("fullHidden");
-            ghostSettings.style.height = "50%";
+            ghostSettings.style.height = "560px";
         }
     });
     if (ghost.alt === "Custom") {
@@ -49,16 +49,30 @@ document.querySelectorAll('.setting-ghost').forEach(ghost => {
 });
 
 // Обработчик кнопки "Применить" для выбора призрака
-applyButton.addEventListener('click', () => {
+applyButton.addEventListener("click", () => {
     if (selectedGhost) {
-        overlay.style.display = 'none';
-        ghostSettings.style.display = 'none';
+        overlay.style.display = "none";
+        ghostSettings.style.display = "none";
 
         choosedGhost = [selectedGhost.alt, selectedGhost.src];
         if (choosedGhost[0] === "Custom") {
             choosedGhost[1] = customUrlInput.value;
+            ghostGender = null;
+        } else if (["Butcher", "Fisherman", "Greybeard", "Sofia", "Nerd", "Skeleton", "Brute"].includes(choosedGhost[0])) {
+            ghostGender = ["Butcher", "Fisherman", "Greybeard", "Sofia", "Nerd", "Skeleton", "Brute"];
+        } else if (["Creepy Girl", "Old Crone", "Patient 07", "Argyro"].includes(choosedGhost[0])) {
+            ghostGender = ["Creepy Girl", "Old Crone", "Patient 07", "Argyro"];
+        } else {
+            ghostGender = null;
         }
+
+        if (choosedGhost[0] != "Custom") {
+            customUrlInput.value = "";
+        }
+
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
     }
 });
+
+document.querySelector(".setting-ghost[alt=None]").click();
