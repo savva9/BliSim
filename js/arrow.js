@@ -12,8 +12,16 @@ let animationDuration = blinkinsData.reduce((sum, [lengthRatio]) => sum + length
 arrow.style.animation = `moveArrow ${animationDuration}s linear infinite`;
 arrow.style.animationPlayState = "paused";
 
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && !isPaused) {
+    restartButton.click();
+  }
+});
+
 // Функция обновления позиции стрелки
 function updateArrowPosition() {
+    // console.log(blinkCount);
+
     const arrowPosition = arrow.getBoundingClientRect().left - arrow.offsetWidth / 2;
     let currentColor = null;
     let accumulatedWidth = 0;
@@ -72,6 +80,8 @@ function updateArrowPosition() {
                         square.style.backgroundPosition = "center";
                         square.style.overflow = "visible";
                         
+                        console.log()
+
                         if ([12, 27, 39, 54, 62, 80, 105, 120].includes(blinkCount) && settings_data[3].checked && settings_data[3].disabled === false) {
                             square.style.transform = "rotate(180deg)";
                         } else {

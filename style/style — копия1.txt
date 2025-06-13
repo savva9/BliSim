@@ -109,7 +109,7 @@ body {
     margin: 20px auto;
     background-size: cover;
     background-position: center;
-    scale: 300%;
+    transform: scale(3) !important;
 }
 
 /* Стили для .ghost (призрак) */
