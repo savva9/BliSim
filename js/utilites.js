@@ -127,7 +127,7 @@ let blinkinsData = blinkinsDataAll["Обычный"];
 
 // Установка авторов
 const madeBy = document.querySelector(".made-by");
-madeBy.textContent += Math.round(Math.random()) ? "savva_9 & kv1nk" : "kv1nk & savva_9";
+madeBy.innerHTML += Math.round(Math.random()) ? '<a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a> & <a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a>' : '<a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a> & <a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a>';
 
 // Функция sleep
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
