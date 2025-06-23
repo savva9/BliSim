@@ -18,5 +18,5 @@ https://savva9.github.io/BliSim/
   
   Нонстоп фазмофобия: https://savva9.github.io/BliSim/?ghostBlink=1+сбитый&ghostModel=Custom&customUrl=https%3A%2F%2Fyt3.googleusercontent.com%2Fsj2TJBR5fGpTnbWUMZmxw41gqFcOp_a9wvQnQRR2WK09Au8X8mUOPhY4YyzEa1Dd1loreQ9f%3Ds900-c-k-c0x00ffffff-no-rj
   
-  ?: https://savva9.github.io/BliSim/?ghostBlink=1+сбитый&ghostModel=Custom&customUrl=https%3A%2F%2Fassets.4cdn.hu%2Fkraken%2F6sNaa3IbnTr48447a-xxl.gif&setting4=true
+  ?: https://savva9.github.io/BliSim/?ghostBlink=1+сбитый&ghostModel=Custom&customUrl=https%3A%2F%2Fassets.4cdn.hu%2Fkraken%2F6sNaa3IbnTr48447a-xxl.gif&start=true
 
