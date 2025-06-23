@@ -1,0 +1,48 @@
+function getURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const result = {};
+
+    for (const [key, value] of params.entries()) {
+        if (value.toLowerCase() === 'true') {
+            result[key] = true;
+        } else if (value.toLowerCase() === 'false') {
+            result[key] = false;
+        } 
+        else {
+            result[key] = value;
+        }
+    }
+
+    return result;
+}
+
+// При загрузке страницы обновляем чекбоксы в соответствии с URL
+document.addEventListener("DOMContentLoaded", () => {
+    const urlSettings = getURLParams();
+
+    const mergedSettings = {
+        ...defaultSettings,
+        ...urlSettings
+    };
+
+    for (let i = 0; i < 4; i++) {
+        if (mergedSettings[`setting${i+1}`]) {
+            settings_data[i].click()
+        }
+    }
+
+    document.querySelector(`.setting-photo[alt="${mergedSettings.photoT}"]`).click();
+    photoAudioSettings[0].checked = mergedSettings["photo1"];
+    photoAudioSettings[1].checked = mergedSettings["photo2"];
+
+    document.querySelector(`input[value="${mergedSettings.ghostBlink}"]`).click();
+
+    document.querySelector(`.setting-ghost[alt="${mergedSettings.ghostModel}"]`).click();
+    customUrlInput.value = mergedSettings.customUrl;
+    applyButton.disabled = false;
+    applyButton.click();
+
+    if (mergedSettings.start) {
+        startButton.click();
+    }
+});

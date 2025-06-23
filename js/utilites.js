@@ -4,7 +4,7 @@ const blinkinsDataAll = {
     "Обычный": [
         [0.220, 1, ""],
         [0.380, 0, ""],
-        [0.183, 1, "1ый обакэ (12 мерцание)"],
+        [0.183, 1, ""],
         [0.277, 0, ""],
         [0.080, 1, ""],
         [0.923, 0, "Длиннейшее пропадание"],
@@ -14,11 +14,11 @@ const blinkinsDataAll = {
         [0.100, 0, ""],
         [0.163, 1, ""],
         [0.317, 0, ""],
-        [0.251, 1, "dont lucky, 2ой обакэ (27 мерцание)"],
+        [0.251, 1, "dont lucky"],
         [0.449, 0, ""],
         [0.183, 1, ""],
         [0.640, 0, ""],
-        [0.220, 1, "3ий обакэ (39 мерцание)"],
+        [0.220, 1, ""],
         [0.229, 0, ""],
         [0.100, 1, ""],
         [0.263, 0, ""]
@@ -58,38 +58,24 @@ const blinkinsDataAll = {
         [0.204, 0, ""],
     ],
     "Они": [
-        [0.240, 1, ""],
-        [0.360, 0, ""],
-        [0.451, 1, ""],
-        [0.351, 0, ""],
-        [0.280, 1, ""],
-        [0.120, 0, ""],
-        [0.503, 1, "Длиннейшее появление"],
-        [0.049, 0, ""],
-        [0.463, 1, ""],
-        [0.040, 0, ""],
-        [0.323, 1, ""],
-        [0.429, 0, ""],
-        [0.403, 1, ""],
-        [0.551, 0, "Длиннейшее пропадание"],
-        [0.471, 1, ""],
-        [0.129, 0, ""],
-        [0.303, 1, ""],
-        [0.020, 0, ""],
-        [0.489, 1, ""],
-        [0.394, 0, ""],
-        [0.449, 1, ""],
-        [0.100, 0, ""],
-        [0.343, 1, ""],
-        [0.160, 0, ""],
-        [0.280, 1, ""],
-        [0.023, 0, ""],
-        [0.500, 1, ""],
-        [0.351, 0, ""],
-        [0.060, 1, ""],
-        [0.489, 0, ""],
-        [0.263, 1, ""],
-        [0.340, 0, ""],
+        [0.1, 1, ""],
+        [1, 0, ""],
+        [0.1, 1, ""],
+        [1, 0, ""],
+        [0.1, 1, ""],
+        [1, 0, ""],
+        [1, 1, ""],
+        [0.75, 0, ""],
+        [1, 1, ""],
+        [0.75, 0, ""],
+        [1, 1, ""],
+        [1, 0, ""],
+        [0.1, 1, ""],
+        [1, 0, ""],
+        [0.1, 1, ""],
+        [1, 0, ""],
+        [0.1, 1, ""],
+        
     ],
     "1 сбитый": [
         [0.220, 1, ""],
@@ -98,17 +84,17 @@ const blinkinsDataAll = {
         [0.640, 0, ""],
         [0.080, 1, ""],
         [0.220, 0, ""],
-        [0.283, 1, "soshyrey"],
+        [0.283, 1, ""],
         [0.200, 0, ""],
         [0.200, 1, ""],
         [0.500, 0, ""],
         [0.163, 1, ""],
         [0.660, 0, ""],
-        [0.251, 1, "dont lucky, 2ой обакэ (27 мерцание)"],
+        [0.251, 1, ""],
         [0.200, 0, ""],
         [0.180, 1, ""],
         [0.183, 0, ""],
-        [0.220, 1, "3ий обакэ (39 мерцание)"],
+        [0.220, 1, ""],
         [0.383, 0, ""],
         [0.097, 1, ""],
         [0.363, 0, ""]
@@ -116,21 +102,21 @@ const blinkinsDataAll = {
     "2 сбитый": [
         [0.280, 1, ""],
         [0.540, 0, ""],
-        [0.203, 1, "1ый обакэ (12 мерцание)"],
+        [0.203, 1, ""],
         [0.249, 0, ""],
         [0.163, 1, ""],
         [0.200, 0, ""],
-        [0.251, 1, "soshyrey"],
+        [0.251, 1, ""],
         [0.351, 0, ""],
         [0.180, 1, ""],
         [0.280, 0, ""],
         [0.223, 1, ""],
         [0.777, 0, "Длиннейшее пропадание"],
-        [0.103, 1, "dont lucky, 2ой обакэ (27 мерцание)"],
+        [0.103, 1, ""],
         [0.720, 0, ""],
         [0.220, 1, ""],
         [0.083, 0, ""],
-        [0.180, 1, "3ий обакэ (39 мерцание)"],
+        [0.180, 1, ""],
         [0.300, 0, ""],
         [0.080, 1, ""],
         [0.620, 0, ""]
@@ -141,7 +127,7 @@ let blinkinsData = blinkinsDataAll["Обычный"];
 
 // Установка авторов
 const madeBy = document.querySelector(".made-by");
-madeBy.textContent += Math.round(Math.random()) ? "savva_9 & kv1nk" : "kv1nk & savva_9";
+madeBy.innerHTML += Math.round(Math.random()) ? '<a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a> & <a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a>' : '<a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a> & <a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a>';
 
 // Функция sleep
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -150,5 +136,36 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
+
+const defaultSettings = {
+    setting1: true, setting2: true, setting3: false, setting4: false,
+    photoT: "None", photo1: true, photo2: true,
+    ghostBlink: "Обычный",
+    ghostModel: "None", customUrl: "",
+    start: false
+};
+
+function updateURL(params) {
+    const currentParams = new URLSearchParams(window.location.search);
+    
+    Object.entries(params).forEach(([key, value]) => {
+        const defaultValue = defaultSettings[key];
+        
+        if (key in defaultSettings) {
+            if (value === defaultValue) {
+                currentParams.delete(key);
+            } 
+            else {
+                currentParams.set(key, value);
+            }
+        }
+        else {
+            currentParams.set(key, value);
+        }
+    });
+
+    const newURL = `${window.location.pathname}?${currentParams.toString()}`;
+    window.history.pushState({}, "", newURL);
+}
 
 const overlay = document.querySelector(".overlay");
