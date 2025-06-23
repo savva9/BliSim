@@ -137,4 +137,35 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
+const defaultSettings = {
+    setting1: true, setting2: true, setting3: false, setting4: false,
+    photoT: "None", photo1: true, photo2: true,
+    ghostBlink: "Обычный",
+    ghostModel: "None", customUrl: "",
+    start: false
+};
+
+function updateURL(params) {
+    const currentParams = new URLSearchParams(window.location.search);
+    
+    Object.entries(params).forEach(([key, value]) => {
+        const defaultValue = defaultSettings[key];
+        
+        if (key in defaultSettings) {
+            if (value === defaultValue) {
+                currentParams.delete(key);
+            } 
+            else {
+                currentParams.set(key, value);
+            }
+        }
+        else {
+            currentParams.set(key, value);
+        }
+    });
+
+    const newURL = `${window.location.pathname}?${currentParams.toString()}`;
+    window.history.pushState({}, "", newURL);
+}
+
 const overlay = document.querySelector(".overlay");

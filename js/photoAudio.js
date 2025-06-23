@@ -11,6 +11,14 @@ const photoAudioVolume = {
     "T3": [0.3,  1],
 }
 
+photoAudioSettings.forEach((el, i) => {
+    el.addEventListener("change", () => {
+        const customObject = {
+            [`photo${i + 1}`]: el.checked
+        };
+        updateURL(customObject);
+    });
+});
 
 // Обработчик выбора призрака
 document.querySelector(".choose-photo-audio").addEventListener("click", () => {
@@ -18,7 +26,6 @@ document.querySelector(".choose-photo-audio").addEventListener("click", () => {
     ghostSettingsAudio.style.display = "block";
 });
 
-// Слушать кнопку мерцаний призрака
 applyButtonAudio.forEach(photoAudioObj => {
     photoAudioObj.addEventListener("click", () => {
         choosedPhotoAudio = photoAudioObj.alt;
@@ -33,9 +40,9 @@ applyButtonAudio.forEach(photoAudioObj => {
             setDisabled = false;
         }
 
-        photoAudioSettings.forEach(el => {
+        photoAudioSettings.forEach((el, i) => {
             el.disabled = setDisabled;
-        })
+        });
 
         const lastSelected = document.querySelector(".setting-photo.selected");
         if (lastSelected) {
@@ -44,6 +51,7 @@ applyButtonAudio.forEach(photoAudioObj => {
         photoAudioObj.classList.add("selected");
         
         isSleep = false;
+        updateURL({ photoT: choosedPhotoAudio })
     });
 });
 

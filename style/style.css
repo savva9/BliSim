@@ -97,7 +97,7 @@ body {
 /* Стиль для надписи "timer" */
 .timer {
     position: fixed;
-    top: 120px;
+    top: -20px;
     left: 10px;
     font-size: 32px;
     color: white;
@@ -232,7 +232,8 @@ input:hover {
 }
 
 .settings,
-.restart-button {
+.restart-button,
+.restart-settings-button {
     width: 40px;
     height: 40px;
     opacity: 0.7;
@@ -246,7 +247,8 @@ input:hover {
 
 .settings:hover,
 .restart-button:hover,
-.FAQ-button:hover {
+.FAQ-button:hover,
+.restart-settings-button:hover {
     cursor: pointer;
     opacity: 1;
 }
