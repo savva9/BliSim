@@ -89,10 +89,16 @@ body {
     border-radius: 5px;
 }
 
+.made-by a,
+.special-thanks a {
+    text-decoration: none;
+    color: white;
+}
+
 /* Стиль для надписи "timer" */
 .timer {
     position: fixed;
-    top: 120px;
+    top: -20px;
     left: 10px;
     font-size: 32px;
     color: white;
@@ -210,7 +216,7 @@ input:hover {
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
     width: 1000px;
-    height: 500px;
+    height: 470px;
     overflow: auto;
     color: white;
 }
@@ -227,7 +233,8 @@ input:hover {
 }
 
 .settings,
-.restart-button {
+.restart-button,
+.restart-settings-button {
     width: 40px;
     height: 40px;
     opacity: 0.7;
@@ -241,7 +248,8 @@ input:hover {
 
 .settings:hover,
 .restart-button:hover,
-.FAQ-button:hover {
+.FAQ-button:hover,
+.restart-settings-button:hover {
     cursor: pointer;
     opacity: 1;
 }
@@ -555,4 +563,10 @@ input[type="button"]:disabled {
 
 .BGClicker {
     z-index: 0 !important;
+}
+
+.wrapper-saveSettings {
+    position: fixed;
+    bottom: 6.45%;
+    right: 4.5%;
 }

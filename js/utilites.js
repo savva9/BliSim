@@ -127,7 +127,7 @@ let blinkinsData = blinkinsDataAll["Обычный"];
 
 // Установка авторов
 const madeBy = document.querySelector(".made-by");
-madeBy.textContent += Math.round(Math.random()) ? "savva_9 & kv1nk" : "kv1nk & savva_9";
+madeBy.innerHTML += Math.round(Math.random()) ? "<a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a> & <a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a>" : "<a href="https://steamcommunity.com/id/kv1nk_/" target="_blank">kv1nk</a> & <a href="https://steamcommunity.com/id/savva_9/" target="_blank">savva_9</a>";
 
 // Функция sleep
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -137,4 +137,63 @@ document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
+// Дефолтные настроки BliSim
+const defaultSettings = {
+    setting1: true, setting2: true, setting3: false, setting4: false,
+    photoT: "None", photo1: true, photo2: true,
+    ghostBlink: "Обычный",
+    ghostModel: "None", customUrl: "",
+    start: false, saveSettings: false
+};
+
+// Сохранять ли настройки
+let isSaveSettings = false;
+
+// Обновление настроек (ссылки)
+function updateURL(params) {
+    const currentParams = new URLSearchParams(window.location.search);
+    
+    if (isSaveSettings) {
+        currentParams.set("saveSettings", "true");
+        
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined && value !== defaultSettings[key]) {
+                currentParams.set(key, value);
+            } else {
+                currentParams.delete(key);
+            }
+        });
+    } else {
+        currentParams.delete("saveSettings");
+    }
+    
+    const newURL = `${window.location.pathname}?${currentParams.toString()}`;
+    window.history.pushState({}, "", newURL);
+}
+
+// Обработчик изменения состояния кнопки сохранения настроек
+document.querySelector(".saveSettings").addEventListener("change", function() {
+    isSaveSettings = this.checked;
+    
+    if (isSaveSettings) {
+        const currentSettings = {
+            setting1: settings_data[0].checked,
+            setting2: settings_data[1].checked,
+            setting3: settings_data[2].checked,
+            setting4: settings_data[3].checked,
+            photoT: choosedPhotoAudio || "None",
+            photo1: photoAudioSettings[0].checked,
+            photo2: photoAudioSettings[1].checked,
+            ghostBlink: document.querySelector(".blink-type").textContent.replace("Тип мерцаний: ", ""),
+            ghostModel: choosedGhost[0] || "None",
+            customUrl: customUrlInput.value || "",
+            saveSettings: true
+        };
+        updateURL(currentSettings);
+    } else {
+        window.history.pushState({}, "", window.location.pathname);
+    }
+});
+
+// Затемнение
 const overlay = document.querySelector(".overlay");

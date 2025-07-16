@@ -72,6 +72,8 @@ applyButton.addEventListener("click", () => {
 
         choosedGhostImg.src = choosedGhost[1];
         canClick = true;
+
+        updateURL({ ghostModel: choosedGhost[0], customUrl: customUrlInput.value })
     }
 });
 
