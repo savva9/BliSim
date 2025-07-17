@@ -9,6 +9,7 @@ settingsIcon.addEventListener("click", () => {
 });
 settingsIcon.click();
 
+// Именение настроек
 settingsMenu.addEventListener("change", () => {
     settings_data[0].checked ? stripeContainer.classList.remove("hidden") : stripeContainer.classList.add("hidden");
     settings_data[0].checked ? timeDisplay.style.top = "120px" : timeDisplay.style.top = "-20px";

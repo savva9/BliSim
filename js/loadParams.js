@@ -1,11 +1,12 @@
+// Получить параметры
 function getURLParams() {
     const params = new URLSearchParams(window.location.search);
     const result = {};
 
     for (const [key, value] of params.entries()) {
-        if (value.toLowerCase() === 'true') {
+        if (value.toLowerCase() === "true") {
             result[key] = true;
-        } else if (value.toLowerCase() === 'false') {
+        } else if (value.toLowerCase() === "false") {
             result[key] = false;
         } 
         else {
@@ -19,15 +20,24 @@ function getURLParams() {
 // При загрузке страницы обновляем чекбоксы в соответствии с URL
 document.addEventListener("DOMContentLoaded", () => {
     const urlSettings = getURLParams();
+    const saveSettingsCheckbox = document.querySelector(".saveSettings");
 
-    const mergedSettings = {
+    // Устанавливаем состояние галочки из URL
+    isSaveSettings = urlSettings.saveSettings === true;
+    saveSettingsCheckbox.checked = isSaveSettings;
+
+    // Загружаем настройки только если галочка была включена или есть параметры
+    const shouldLoadSettings = isSaveSettings || Object.keys(urlSettings).length > 0;
+    
+    const mergedSettings = shouldLoadSettings ? {
         ...defaultSettings,
         ...urlSettings
-    };
+    } : defaultSettings;
 
+    // Применяем настройки
     for (let i = 0; i < 4; i++) {
         if (mergedSettings[`setting${i+1}`]) {
-            settings_data[i].click()
+            settings_data[i].click();
         }
     }
 
@@ -45,4 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mergedSettings.start) {
         startButton.click();
     }
+
+    if (!isSaveSettings) {
+        const ghostImages = document.querySelectorAll('.setting-ghost:not([alt="Custom"]):not([alt="None"])');
+        const randomGhost =  ghostImages[Math.floor(Math.random() * ghostImages.length)];
+        randomGhost.click();
+        applyButton.click();
+    }
 });
+
+// Изменение сохранения настроек
+document.querySelector(".saveSettings").addEventListener("click", () => {
+    isSaveSettings = !isSaveSettings;
+})

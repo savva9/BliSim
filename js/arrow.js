@@ -128,6 +128,7 @@ const hideStripeAndArrow = () => {
     arrow.classList.add("hidden");
 };
 
+// Показывать полоску и стрелки
 const showStripeAndArrow = () => {
     stripeContainer.classList.remove("hidden");
     arrow.classList.remove("hidden");

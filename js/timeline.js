@@ -1,5 +1,4 @@
 // Добавление сегментов на полосу
-
 function createLine() {
     blinkinsData.forEach(([lengthRatio, colorFlag, description]) => {
         const segment = document.createElement("div");

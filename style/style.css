@@ -89,7 +89,8 @@ body {
     border-radius: 5px;
 }
 
-.made-by a {
+.made-by a,
+.special-thanks a {
     text-decoration: none;
     color: white;
 }
@@ -215,7 +216,7 @@ input:hover {
     z-index: 101 !important;
     animation: fadeIn 0.5s ease-out;
     width: 1000px;
-    height: 500px;
+    height: 470px;
     overflow: auto;
     color: white;
 }
@@ -562,4 +563,10 @@ input[type="button"]:disabled {
 
 .BGClicker {
     z-index: 0 !important;
+}
+
+.wrapper-saveSettings {
+    position: fixed;
+    bottom: 6.45%;
+    right: 4.5%;
 }
