@@ -55,6 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mergedSettings.start) {
         startButton.click();
     }
+
+    if (!isSaveSettings) {
+        const ghostImages = document.querySelectorAll('.setting-ghost:not([alt="Custom"]):not([alt="None"])');
+        const randomGhost =  ghostImages[Math.floor(Math.random() * ghostImages.length)];
+        randomGhost.click();
+        applyButton.click();
+    }
 });
 
 // Изменение сохранения настроек
