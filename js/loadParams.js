@@ -19,6 +19,8 @@ function getURLParams() {
 
 // При загрузке страницы обновляем чекбоксы в соответствии с URL
 document.addEventListener("DOMContentLoaded", () => {
+    if (!isSaveSettings) { window.history.pushState({}, "", window.location.pathname); }
+    
     const urlSettings = getURLParams();
     const saveSettingsCheckbox = document.querySelector(".saveSettings");
 
