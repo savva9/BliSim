@@ -19,14 +19,17 @@ function getURLParams() {
 
 // При загрузке страницы обновляем чекбоксы в соответствии с URL
 document.addEventListener("DOMContentLoaded", () => {
-    if (!isSaveSettings) { window.history.pushState({}, "", window.location.pathname); }
-    
-    const urlSettings = getURLParams();
+    let urlSettings = getURLParams();
     const saveSettingsCheckbox = document.querySelector(".saveSettings");
 
     // Устанавливаем состояние галочки из URL
     isSaveSettings = urlSettings.saveSettings === true;
     saveSettingsCheckbox.checked = isSaveSettings;
+
+    if (!isSaveSettings) {
+        window.history.pushState({}, "", window.location.pathname);
+        urlSettings = {};
+    }
 
     // Загружаем настройки только если галочка была включена или есть параметры
     const shouldLoadSettings = isSaveSettings || Object.keys(urlSettings).length > 0;
