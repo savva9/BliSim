@@ -19,17 +19,12 @@ function getURLParams() {
 
 // При загрузке страницы обновляем чекбоксы в соответствии с URL
 document.addEventListener("DOMContentLoaded", () => {
-    let urlSettings = getURLParams();
+    const urlSettings = getURLParams();
     const saveSettingsCheckbox = document.querySelector(".saveSettings");
 
     // Устанавливаем состояние галочки из URL
     isSaveSettings = urlSettings.saveSettings === true;
     saveSettingsCheckbox.checked = isSaveSettings;
-
-    if (!isSaveSettings) {
-        window.history.pushState({}, "", window.location.pathname);
-        urlSettings = {};
-    }
 
     // Загружаем настройки только если галочка была включена или есть параметры
     const shouldLoadSettings = isSaveSettings || Object.keys(urlSettings).length > 0;
@@ -51,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     photoAudioSettings[1].checked = mergedSettings["photo2"];
 
     document.querySelector(`input[value="${mergedSettings.ghostBlink}"]`).click();
-
     document.querySelector(`.setting-ghost[alt="${mergedSettings.ghostModel}"]`).click();
     customUrlInput.value = mergedSettings.customUrl;
     applyButton.disabled = false;
@@ -61,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startButton.click();
     }
 
-    if (!isSaveSettings) {
+    if (!urlSettings.ghostModel) {
         const ghostImages = document.querySelectorAll('.setting-ghost:not([alt="Custom"]):not([alt="None"])');
         const randomGhost =  ghostImages[Math.floor(Math.random() * ghostImages.length)];
         randomGhost.click();
