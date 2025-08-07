@@ -14,7 +14,7 @@ applyButtonBlink.forEach(but => {
         overlay.style.display = "none";
         ghostSettingsBlink.style.display = "none";
 
-        let choosedGhostBlink = but.value
+        let choosedGhostBlink = but.id
 
         document.querySelectorAll(".segment").forEach(el => {
             el.remove();
@@ -38,7 +38,7 @@ applyButtonBlink.forEach(but => {
             restartButton.click();
         }
 
-        blinkTypeText.textContent = `Тип мерцаний: ${choosedGhostBlink}`;
+        blinkTypeText.textContent = `${choosedLanguage["Тип мерцаний:"]} ${choosedLanguage[choosedGhostBlink]}`;
         segmentsList = document.querySelectorAll(".segment");
 
         updateURL({ ghostBlink: choosedGhostBlink })

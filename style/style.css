@@ -256,6 +256,7 @@ input:hover {
 
 .settings-menu {
     position: fixed;
+    min-width: 250px;
     bottom: 150px;
     right: 50px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -569,4 +570,63 @@ input[type="button"]:disabled {
     position: fixed;
     bottom: 6.45%;
     right: 4.5%;
+}
+
+.language-selection-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000 !important;
+}
+
+.blisim-title {
+    position: fixed;
+    top: -110%;
+    color: white;
+    font-size: 148px;
+    margin-bottom: 30px;
+    font-family: "Shantell Sans", serif;
+    text-shadow: 2px 2px 10px #888888;
+}
+
+.select-language {
+    background-color: #4f5258;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #000000b3;
+    margin-top: 30%;
+}
+
+.text-choose-language {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.choose-language {
+    font-family: "Shantell Sans", serif;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background-color: #323235;
+    color: white;
+    cursor: pointer;
+}
+
+.language-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4f5258;
+    z-index: 999 !important;
+}
+
+.change-language {
+    scale: 0.7;
 }
