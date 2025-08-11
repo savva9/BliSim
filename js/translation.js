@@ -50,7 +50,6 @@ const translations = {
         "Правильное отображения мерцаний в начале охоты": "Correct display of flickers at the beginning of the hunt",
         "Включить появление Обакэ": "Turn on the appearance of the Obake",
         "Сменить язык": "Change language",
-        "Доцык": "Docyk",
     },
     "ru": {
         "Фото:": "Фото:",
@@ -103,7 +102,6 @@ const translations = {
         "Правильное отображения мерцаний в начале охоты": "Правильное отображения мерцаний в начале охоты",
         "Включить появление Обакэ": "Включить появление Обакэ",
         "Сменить язык": "Сменить язык",
-        "Доцык": "Доцык",
     },
     "ua": {
         "Фото:": "Фото:",
@@ -156,7 +154,6 @@ const translations = {
         "Правильное отображения мерцаний в начале охоты": "Правильне відображення блиманнь на початку атаки",
         "Включить появление Обакэ": "Увімкнути появу Обаке",
         "Сменить язык": "Змінити мову",
-        "Доцык": "Доцик",
     }
 };
 
@@ -224,4 +221,5 @@ if (!savedLang) {
 document.querySelector(".change-language").addEventListener("click", () => {
     localStorage.removeItem("selectedLanguage");
     window.location.reload();
+
 });
