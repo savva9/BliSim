@@ -18,6 +18,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neucha&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Выбрать язык -->
+    <div class="language-selection-container fullHidden">
+        <h1 class="blisim-title">BliSim</h1>
+        <div class="select-language">
+            <p class="text-choose-language">Choose language / Выберите язык:</p>
+            <select class="choose-language">
+                <option>--language--</option>
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+                <option value="ua">Українська</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Полоса с индикатором (стрелкой) -->
     <div id="stripe" class="hidden">
         <div class="arrow hidden"></div>
@@ -80,6 +94,7 @@
         <div class="special-thanks">Отдельное спасибо: <a href="https://steamcommunity.com/id/patunsasun/" target="_blank">Доцык</a></div>
         
         <div class="wrapper-saveSettings">
+            <input type="button" value="Сменить язык" class="change-language">
             <input type="checkbox" class="saveSettings">
             Сохранять выбранные настройки
         </div>
@@ -90,7 +105,7 @@
     <div class="settings-menu">
         <!-- Настройка отображения таймлайна -->
         <div class="setting-item">
-            <label for="setting1" title="Отображение переода мерцаний призрака">Показывать таймлайн:</label>
+            <label for="setting1" title="Отображение периода мерцаний призрака">Показывать таймлайн:</label>
             <input type="checkbox" id="setting">
         </div>
 
@@ -102,19 +117,19 @@
 
         <!-- Настройка добавлении 1 секунды -->
         <div class="setting-item">
-            <label for="setting3" title="Правильное отображения мерцаний в начале охоты">Добавить 1 секунду</label>
+            <label for="setting3" title="Правильное отображения мерцаний в начале охоты">Добавить 1 секунду:</label>
             <input type="checkbox" id="setting">
         </div>
 
         <!-- Обакэ -->
         <div class="setting-item">
-            <label for="setting4" title="Включить появление Обакэ">Смена облика Обакэ</label>
+            <label for="setting4" title="Включить появление Обакэ">Смена облика Обакэ:</label>
             <input type="checkbox" id="setting">
         </div>
         
         <!-- Настройка выбора призрака -->
         <div class="setting-item ghost-conteiner">
-            <input class="choose-photo-audio" type="button" value="Выбрать звук фотика">
+            <input class="choose-photo-audio" type="button" value="Выбрать фотоаппарат">
             <input class="choose-ghost-blink" type="button" value="Выбрать тип мерцания">
             <input class="choose-ghost" type="button" value="Выбрать модель призрака">
             <img src="img/Ghosts/None.png" alt="None" class="selected-ghost selected-ghost-settings">
@@ -155,12 +170,12 @@
     <!-- Выбор типа мерцаний -->
     <div class="setting-choose-ghost-blink">
         <div class="blink-grid">
-            <input class="applyButton-blink" type="button" value="Обычный">
-            <input class="applyButton-blink" type="button" value="Фантом">
-            <input class="applyButton-blink" type="button" value="Они" title="Они временно не доступен из-за технических ограничений" disabled>
-            <input class="applyButton-blink" type="button" value="Деоген">
-            <input class="applyButton-blink" type="button" value="1 сбитый">
-            <input class="applyButton-blink" type="button" value="2 сбитый">
+            <input class="applyButton-blink" type="button" id="Обычный" value="Обычный">
+            <input class="applyButton-blink" type="button" id="Фантом" value="Фантом">
+            <input class="applyButton-blink" type="button" id="Они" value="Они" title="Они временно не доступен из-за технических ограничений" disabled>
+            <input class="applyButton-blink" type="button" id="Деоген" value="Деоген">
+            <input class="applyButton-blink" type="button" id="1 сбитый" value="1 сбитый">
+            <input class="applyButton-blink" type="button" id="2 сбитый" value="2 сбитый">
         </div>
     </div>
 
@@ -192,6 +207,7 @@
     <div class="overlay"></div>
 
     <!-- Подключение JavaScript -->
+    <script src="js/translation.js"></script>
     <script src="js/utilites.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/FAQ.js"></script>

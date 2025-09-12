@@ -20,12 +20,12 @@ clickers.forEach(clicker => {
         } else if (square.style.backgroundImage !== "none" && !isPaused && canClick && !isSleep) {
             photos++;
             combo++;
-        } else {
+        } else if (isSleep === false) { 
             combo = 0;
         }
 
-        photosText.textContent = `Фото: ${photos}`;
-        comboText.textContent = `Комбо: ${combo}`;
+        photosText.textContent = `${choosedLanguage["Фото:"]} ${photos}`;
+        comboText.textContent = `${choosedLanguage["Комбо:"]} ${combo}`;
 
         if (photoAudio && !isPaused && canClick && !isSleep && (photoAudioSettings[0].checked || photoAudioSettings[1].checked)) {
             if (photoAudioSettings[0].checked) {

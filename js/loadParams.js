@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     photoAudioSettings[0].checked = mergedSettings["photo1"];
     photoAudioSettings[1].checked = mergedSettings["photo2"];
 
-    document.querySelector(`input[value="${mergedSettings.ghostBlink}"]`).click();
+    document.querySelector(`input#${mergedSettings.ghostBlink}`).click();
     document.querySelector(`.setting-ghost[alt="${mergedSettings.ghostModel}"]`).click();
     customUrlInput.value = mergedSettings.customUrl;
     applyButton.disabled = false;

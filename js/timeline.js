@@ -11,8 +11,8 @@ function createLine() {
 
         // Создаем и добавляем подсказку
         const fullDescription = [
-            `${(lengthRatio * 1000).toFixed(0)}мс`,
-            colorFlag ? "Видно" : "Не видно",
+            `${(lengthRatio * 1000).toFixed(0)}${choosedLanguage["мс"]}`,
+            colorFlag ? choosedLanguage["Видно"] : choosedLanguage["Не видно"],
             description
         ];
 
