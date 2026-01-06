@@ -35,9 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } : defaultSettings;
 
     // Применяем настройки
-    for (let i = 0; i < 4; i++) {
-        if (mergedSettings[`setting${i+1}`]) {
-            settings_data[i].click();
+    for (let i = 0; i < settings_data.length; i++) {
+        if (mergedSettings[`setting${i + 1}`] === true) {
+            settings_data[i].checked = true;
+            settings_data[i].dispatchEvent(new Event("change", { bubbles: true }));
         }
     }
 
@@ -66,4 +67,5 @@ document.addEventListener("DOMContentLoaded", () => {
 // Изменение сохранения настроек
 document.querySelector(".saveSettings").addEventListener("click", () => {
     isSaveSettings = !isSaveSettings;
+
 })
