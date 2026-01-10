@@ -140,7 +140,7 @@ document.addEventListener("contextmenu", function(event) {
 const defaultSettings = {
     setting1: true, setting2: true, setting3: false, setting4: false,
     photoT: "None", photo1: true, photo2: true,
-    ghostBlink: "Обычный",
+    ghostBlink: "Обычный", clickDelay: true,
     ghostModel: "None", customUrl: "",
     start: false, saveSettings: false
 };
@@ -184,6 +184,7 @@ document.querySelector(".saveSettings").addEventListener("change", function() {
             photo1: photoAudioSettings[0].checked,
             photo2: photoAudioSettings[1].checked,
             ghostBlink: document.querySelector(".blink-type").textContent.replace("Тип мерцаний: ", ""),
+            clickDelay: clickDelayCheckbox.checked,
             ghostModel: choosedGhost[0] || "None",
             customUrl: customUrlInput.value || "",
             saveSettings: true

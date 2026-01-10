@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         randomGhost.click();
         applyButton.click();
     }
+
+    clickDelayCheckbox.checked = mergedSettings["clickDelay"];
 });
 
 // Изменение сохранения настроек

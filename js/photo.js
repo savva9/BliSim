@@ -3,6 +3,7 @@ const photosText = document.querySelector(".photo");
 const comboText = document.querySelector(".combo");
 const stripeContainer = document.getElementById("stripe");
 const square = document.getElementById("square");
+const clickDelayCheckbox = document.querySelector(".set-clickDelay-setting");
 
 let photos = 0;
 let combo = 0;
@@ -10,14 +11,17 @@ let isPaused = true;
 let canClick = false;
 let isSleep = false;
 
+const HOLD_DELAY = 400;
+
 let holdTimer = null;
 let photoTaken = false;
-let mouseDownTime = 0;
 
+clickDelayCheckbox.addEventListener("click", () => {
+    updateURL({["clickDelay"]: clickDelayCheckbox.checked});
+})
+
+/* Единая функция фото */
 function makePhoto() {
-    if (photoTaken) return;
-    photoTaken = true;
-
     if ((square.style.backgroundColor === "black" || square.style.backgroundColor === "white") && !isPaused && canClick && !isSleep) {
         photos++;
         combo++;
@@ -51,22 +55,34 @@ function makePhoto() {
     }
 }
 
+/* ОБРАБОТЧИКИ */
 clickers.forEach(clicker => {
 
     clicker.addEventListener("mousedown", () => {
-        mouseDownTime = Date.now();
-        photoTaken = false;
 
-        holdTimer = setTimeout(() => {
+        /* режим удержания ВКЛЮЧЕН */
+        if (clickDelayCheckbox.checked) {
+            photoTaken = false;
+
+            holdTimer = setTimeout(() => {
+                photoTaken = true;
+                makePhoto(); // удержание 400 мс
+            }, HOLD_DELAY);
+
+        } else {
+            /* обычный клик */
             makePhoto();
-        }, 400);
+        }
     });
 
     clicker.addEventListener("mouseup", () => {
+
+        if (!clickDelayCheckbox.checked) return;
+
         clearTimeout(holdTimer);
 
         if (!photoTaken) {
-            makePhoto();
+            makePhoto(); // отпускание раньше 400 мс
         }
     });
 
